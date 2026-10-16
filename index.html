@@ -52,20 +52,55 @@
     table-layout:auto;min-width:max-content}
   thead th{position:sticky;top:0;z-index:5;background:#0f172a;color:#e2e8f0;text-align:left;
     padding:13px 16px;font-size:11px;font-weight:700;letter-spacing:.6px;text-transform:uppercase;
-    border-bottom:1px solid #1e293b;white-space:nowrap;vertical-align:middle}
-  tbody td{padding:12px 16px;border-bottom:1px solid #eef2f7;vertical-align:top;
-    line-height:1.55;word-break:break-word;overflow-wrap:anywhere;min-width:70px}
-  tbody tr:nth-child(even) td{background:#fafbfd}
-  tbody tr:hover td{background:#eff6ff}
-  tbody tr.secrow td{background:#dbeafe !important;color:#1e3a8a;font-weight:700;font-size:11.5px;
-    letter-spacing:.7px;text-transform:uppercase;padding:10px 16px}
+    border-bottom:2px solid #1e293b;white-space:nowrap;vertical-align:middle}
 
+  /* ===== Filas con más contraste ===== */
+  tbody td{padding:12px 16px;border-bottom:1px solid #cbd5e1;vertical-align:top;line-height:1.55;
+    word-break:break-word;overflow-wrap:anywhere;min-width:70px;
+    border-left:4px solid transparent;transition:background .12s,border-left-color .12s}
+  tbody tr:nth-child(odd)  td{ background:#ffffff; }
+  tbody tr:nth-child(even) td{ background:#eef2f7; }
+  tbody tr:nth-child(even) td:first-child{ border-left-color:#bfdbfe; }
+  tbody tr:hover td{ background:#dbeafe; }
+  tbody tr:hover td:first-child{ border-left-color:#2563eb; }
+
+  tbody tr.secrow td{background:#1e3a8a !important;color:#f8fafc;font-weight:700;font-size:11.5px;
+    letter-spacing:.7px;text-transform:uppercase;padding:10px 16px;
+    border-bottom:2px solid #1e40af;border-left-color:#1e40af !important}
+
+  /* ===== Sub-headers intermedios ===== */
+  td.subheader-cell{background:#475569 !important;color:#f8fafc !important;font-size:10.5px;
+    font-weight:700;letter-spacing:.7px;text-transform:uppercase;padding:9px 16px;
+    border-top:2px solid #1e293b;border-bottom:2px solid #1e293b;
+    border-left:4px solid #0ea5e9;text-align:center;white-space:nowrap;min-width:70px;vertical-align:middle}
+  td.subheader-cell.empty-cell{background:#1e293b !important;color:transparent !important;border-left-color:#0f172a}
+  tbody tr.subheader-row:hover td.subheader-cell{background:#334155 !important;color:#fff !important}
+  tbody tr.subheader-row:hover td.subheader-cell.empty-cell{background:#1e293b !important;color:transparent !important}
+
+  /* ===== Índice ===== */
+  tbody tr.indice-row td{padding:18px 22px;font-size:14px;border-bottom:2px solid #cbd5e1;border-left-width:6px}
+  tbody tr.indice-row:nth-child(odd)  td{ background:#ffffff; }
+  tbody tr.indice-row:nth-child(even) td{ background:#eff6ff; }
+  tbody tr.indice-row td:first-child{border-left-color:#2563eb;font-weight:800;font-size:16px;
+    color:#1e3a8a;text-align:center;min-width:70px}
+  tbody tr.indice-row:nth-child(even) td:first-child{ border-left-color:#0ea5e9; }
+  tbody tr.indice-row:hover td{ background:#dbeafe; }
+  tbody tr.indice-row:hover td:first-child{ border-left-color:#1e40af; background:#bfdbfe; }
+
+  /* ===== Moneda MXN ===== */
+  td.money{text-align:right;font-variant-numeric:tabular-nums;white-space:nowrap;
+    min-width:130px;padding-left:20px;padding-right:20px}
+  td.money .cur{font-size:10.5px;color:var(--muted);font-weight:600;margin-left:3px}
+  td.money.is-total{font-weight:700;color:#166534;background:#f0fdf4}
+  tbody tr:hover td.money.is-total{ background:#dcfce7; }
+
+  /* ===== Clases por tipo de columna ===== */
   th.col-img,   td.col-img   {text-align:center;min-width:120px;max-width:160px}
   th.col-id,    td.col-id    {min-width:80px;white-space:nowrap;font-weight:600}
   th.col-unit,  td.col-unit  {min-width:65px;text-align:center;white-space:nowrap}
   th.col-qty,   td.col-qty   {min-width:80px;text-align:right;white-space:nowrap;font-variant-numeric:tabular-nums}
   th.col-money, td.col-money {min-width:110px;text-align:right;white-space:nowrap;font-variant-numeric:tabular-nums}
-  th.col-link,  td.col-link  {min-width:120px;max-width:200px;word-break:break-all;font-size:11.5px}
+  th.col-link,  td.col-link  {min-width:120px;max-width:220px;word-break:break-all;font-size:11.5px}
   th.col-desc,  td.col-desc  {min-width:280px;max-width:560px}
   th.col-text,  td.col-text  {min-width:120px;max-width:280px}
   th.col-cap,   td.col-cap   {min-width:140px;max-width:260px}
@@ -77,24 +112,17 @@
   td a{color:var(--accent);text-decoration:none;border-bottom:1px dotted #93c5fd;word-break:break-all}
   td a:hover{color:#1d4ed8;border-bottom-style:solid}
 
-  /* ===== ÍNDICE: enlaces a las hojas ===== */
+  /* ===== Índice: enlaces ===== */
   td.cat-link{min-width:230px;padding:10px 16px !important}
-  .indice-link{
-    display:inline-flex;align-items:center;gap:8px;
-    padding:7px 12px;border-radius:8px;
-    background:#eff6ff;border:1px solid #bfdbfe;
-    color:var(--accent);font-weight:600;font-size:12.5px;
-    text-decoration:none;transition:.15s;cursor:pointer;
-    line-height:1.2;
-  }
+  .indice-link{display:inline-flex;align-items:center;gap:8px;padding:8px 14px;border-radius:8px;
+    background:#eff6ff;border:1px solid #bfdbfe;color:var(--accent);font-weight:600;font-size:13px;
+    text-decoration:none;transition:.15s;cursor:pointer;line-height:1.2}
   .indice-link:hover{background:#dbeafe;border-color:#93c5fd;color:#1d4ed8;transform:translateX(2px)}
-  .indice-link::before{
-    content:"→";font-weight:400;color:var(--muted);font-size:13px;
-    transition:.15s;
-  }
+  .indice-link::before{content:"→";font-weight:400;color:var(--muted);font-size:13px;transition:.15s}
   .indice-link:hover::before{color:var(--accent);transform:translateX(1px)}
   .indice-note{display:inline-block;color:#94a3b8;font-size:11.5px;font-style:italic;padding:4px 0}
 
+  /* ===== Imágenes ===== */
   td.imgcell{text-align:center;padding:8px}
   td.imgcell img{max-width:140px;max-height:110px;border-radius:8px;cursor:zoom-in;
     transition:.15s;border:1px solid var(--line);object-fit:cover}
@@ -104,6 +132,7 @@
     align-items:center;justify-content:center;z-index:1000;padding:30px;cursor:zoom-out}
   #lightbox img{max-width:90vw;max-height:90vh;border-radius:10px}
 
+  /* ===== Búsqueda global ===== */
   .gresults{display:flex;flex-direction:column;gap:12px}
   .gcard{background:#fff;border:1px solid var(--line);border-left:4px solid var(--accent2);
     border-radius:10px;padding:14px 18px;box-shadow:0 1px 2px rgba(15,23,42,.05)}
@@ -121,12 +150,14 @@
     .sidebar{position:static;width:100%;flex:none;height:auto;max-height:230px;padding-bottom:16px}
     .tablewrap{max-height:none}.content{padding:12px}thead th{position:static}
     tbody td{padding:10px 12px}
+    tbody tr.indice-row td{padding:14px 16px;font-size:13px}
   }
   @media print{
     .sidebar,.topbar{display:none}
     .tablewrap{max-height:none;border:0;box-shadow:none;overflow:visible}
     table{min-width:0;font-size:10px}
     tbody td,thead th{padding:6px 8px}
+    tbody td{background:#fff !important;border-left-color:transparent !important}
     .indice-link{background:transparent;border:0;padding:0;color:var(--ink);font-weight:600}
     .indice-link::before{content:""}
     body{background:#fff}
@@ -158,7 +189,7 @@
 
 <script>
 /* =========================================================
-   OPCIONAL — Imágenes por clave
+   IMÁGENES por clave (opcional)
    ========================================================= */
 const IMAGENES = {
   // "AA-3.1": "img/AA-3.1.jpg",
@@ -462,17 +493,17 @@ const SHEETS = {
 | DESCRIPCIÓN | CLAVE | MEDIDA | UBICACION | REFERENCIA | IMAGEN DE REFERENCIA | UNIDAD | CANTIDAD | P.U. IVA INCLUIDO | TOTAL | CONSIDERACIONES |
 | CANCELERIAS |  |  |  |  |  |  |  |  | =J5+J22+J47 |  |
 | !! | VENTANAS |  |  |  |  |  |  |  | =SUM(J7:J19) |  |
-| VENTANA 2320mm x 3470mm, 3 fijos + 1 proyectable, perfiles aluminio negro, cristal 6 mm. | VG-03 | 3.47 M X 2.32 M |  | KBS V02 SERIE 50 NEGRO ELECTROSTATICO / 6MM CLARO TEMPLADO | #VALUE! | PZA | 7 | OPCION 1 | KBS |  |
+| VENTANA DE 2320mm ANCHO x 3470mm. ALTO, 3 FIJOS, 1 PROYECTABLE, CON PERFILES DE ALUMINIO NEGRO Y CRISTAL  6 mm. | VG-03 | 3.47 M X 2.32 M |  | KBS V02 SERIE 50 NEGRO ELECTROSTATICO / 6MM CLARO TEMPLADO | #VALUE! | PZA | 7 | OPCION 1 | KBS |  |
 |  |  |  | TIPO PARA NIVELES DE DOBLE ALTURA |  |  |  |  | 30056.91 | =I7*H6 |  |
-| VENTANA 1100mm x 1760mm, 1 proyectable + 5 fijo. | VG-07 | 1.10 M X 1.76 M |  | KBS V04 SERIE 50 NEGRO ELECTROSTATICO / 6MM CLARO TEMPLADO | #VALUE! | PZA | 2 | OPCION 1 |  |  |
+| VENTANA DE 1100mm ANCHO x 1760mm. ALTO, 1 PROYECTABLE + 5 FIJO. | VG-07 | 1.10 M X 1.76 M |  | KBS V04 SERIE 50 NEGRO ELECTROSTATICO / 6MM CLARO TEMPLADO | #VALUE! | PZA | 2 | OPCION 1 |  |  |
 |  |  |  | LOCKOFF PARA NIVELES DE DOBLE ALTURA |  |  |  |  | 7054.86 | =I9*H8 |  |
-| VENTANA 2320mm x 1760mm, 1 fijo + 1 proyectable. | VG-04 | 2.32 M X 1.76 M |  | KBS V05 SERIE 50 NEGRO ELECTROSTATICO / 6MM CLARO TEMPLADO | #VALUE! | PZA | 187 | OPCION 1 | KBS |  |
+| VENTANA DE 2320mm ANCHO x 1760mm. ALTO, 1 FIJO, 1 PROYECTABLE. | VG-04 | 2.32 M X 1.76 M |  | KBS V05 SERIE 50 NEGRO ELECTROSTATICO / 6MM CLARO TEMPLADO | #VALUE! | PZA | 187 | OPCION 1 | KBS |  |
 |  |  |  | NIVELES TIPO |  |  |  |  | 16213.47 | =I11*H10 |  |
-| VENTANA 3870mm x 1760mm, 2 fijos + 1 proyectable. | VG-05 | 3.87 M X 1.76 M |  | KBS V07 SERIE 50 NEGRO ELECTROSTATICO / 6MM CLARO TEMPLADO | #VALUE! | PZA | 38 | OPCION 1 | KBS |  |
+| VENTANA DE 3870mm ANCHO x 1760mm. ALTO, 2 FIJOS, 1 PROYECTABLE. | VG-05 | 3.87 M X 1.76 M |  | KBS V07 SERIE 50 NEGRO ELECTROSTATICO / 6MM CLARO TEMPLADO | #VALUE! | PZA | 38 | OPCION 1 | KBS |  |
 |  |  |  | NIVELES TIPO LOCKOFF |  |  |  |  | 25843.15 | =I13*H12 |  |
-| VENTANA 1100mm x 1760mm, 1 proyectable + 1 fijo. | VG-06 | 1.10 M X 1.76 M |  | KBS V07 SERIE 50 NEGRO ELECTROSTATICO / 6MM CLARO TEMPLADO | #VALUE! | PZA | 4 | OPCION 1 | KBS | PARAMETRICO POR M2 |
+| VENTANA DE 1100mm ANCHO x 1760mm. ALTO, 1 PROYECTABLE + 1 FIJO. | VG-06 | 1.10 M X 1.76 M |  | KBS V07 SERIE 50 NEGRO ELECTROSTATICO / 6MM CLARO TEMPLADO | #VALUE! | PZA | 4 | OPCION 1 | KBS | PARAMETRICO POR M2 |
 |  |  |  | PHS |  |  |  |  | =4382.84*1.936 | =I15*H14 |  |
-| VENTANA 41200mm x 2600mm, 4 fijos de 820mm. | VG-08 | 4.12 M X 2.60 M |  | GRUPO VIDRIERO TR S.A. DE C.V. | #VALUE! | PZA | 1 | OPCION 1 | GRUPO VIDRIERO TR | PARAMETRICO POR M2 |
+| VENTANA DE 41200mm ANCHO x 2600mm ALTO, 4 FIJOS DE 820mm. | VG-08 | 4.12 M X 2.60 M |  | GRUPO VIDRIERO TR S.A. DE C.V. | #VALUE! | PZA | 1 | OPCION 1 | GRUPO VIDRIERO TR | PARAMETRICO POR M2 |
 |  |  |  | PH AMENIDADES SALIDA A TERRAZA |  |  |  |  | 58490.4 | =I17*H16 |  |
 | CANCELERÍA SPIDER ACERO INOXIDABLE + COSTILLAS VIDRIO REFORZADO 8.45 x 7.12m. | VG-01 | 8.45 M X 7.12 M |  | KBS V01 SERIE 50 NEGRO ELECTROSTATICO / 12MM ULTRA CLARO TEMPLADO / COSTILLAS 15MM | #VALUE! | PZA | 1 | OPCION 1 | KBS |  |
 |  |  |  | LOBBY |  |  |  |  | 457108.56 | =I19*H18 |  |
@@ -886,14 +917,25 @@ function parseSheet(raw){
   const lines=raw.split('\n').map(l=>l.trim()).filter(Boolean);
   const rows=[];
   for(let line of lines){
-    let sec=false;
-    if(line.startsWith('!!')){sec=true;line=line.slice(2).trim();}
     if(!line.startsWith('|')) continue;
     let s=line.slice(1);
     if(s.endsWith('|')) s=s.slice(0,-1);
     const cells=s.split('|').map(c=>c.trim());
+
+    // Detectar marcador "!!" en el primer cell
+    let sec=false, subheader=false;
+    if(cells[0] === '!!'){
+      sec = true;
+      cells.shift();
+      const realContent = cells.filter(c =>
+        c && !c.startsWith('=') && !/^#(VALUE|REF|N\/A|DIV)/i.test(c)
+      ).length;
+      if(realContent >= 2) subheader = true;
+    }
+
     if(!sec && cells.length && cells.every(c=>/^:?-+:?$/.test(c))) continue;
-    rows.push({sec,cells});
+
+    rows.push({sec, subheader, cells});
   }
   if(!rows.length) return {header:[],rows:[]};
   const maxCols=Math.max(...rows.map(r=>r.cells.length));
@@ -908,6 +950,131 @@ function parseSheet(raw){
 }
 
 ORDER.forEach(k=>{DATA[k]=parseSheet(SHEETS[k]);});
+
+/* =========================================================
+   POST-PROCESO: reordenar columnas y fusionar filas
+   ========================================================= */
+function mergeUbicacionRows(sheetData){
+  const uIdx    = sheetData.header.findIndex(h => /ubicaci[oó]n/i.test(String(h||'')));
+  const claveIdx= sheetData.header.findIndex(h => /^clave$/i.test(String(h||'').trim()));
+  const descIdx = sheetData.header.findIndex(h => /descripci/i.test(String(h||'')));
+  if(uIdx < 0 || claveIdx < 0 || descIdx < 0) return;
+
+  const out = [];
+  for(let i=0;i<sheetData.rows.length;i++){
+    const r = sheetData.rows[i];
+    if(r.sec){ out.push(r); continue; }
+
+    const tieneUbic = String(r.cells[uIdx]||'').trim() !== '';
+    const sinClave  = String(r.cells[claveIdx]||'').trim() === '';
+    const sinDesc   = String(r.cells[descIdx]||'').trim() === '';
+
+    if(tieneUbic && sinClave && sinDesc && out.length){
+      const prev = out[out.length-1];
+      if(!prev.sec && !String(prev.cells[uIdx]||'').trim()){
+        prev.cells[uIdx] = r.cells[uIdx];
+        r.cells.forEach((c,j)=>{
+          if(j === uIdx) return;
+          const cv = String(c||'').trim();
+          const pv = String(prev.cells[j]||'').trim();
+          if(cv === '') return;
+          // Overwrite si prev vacío, o prev no numérico y c sí numérico
+          if(pv === '' || (!/^-?[\d.,]+$/.test(pv) && /^-?[\d.,]+$/.test(cv))){
+            prev.cells[j] = c;
+          }
+        });
+        continue;
+      }
+    }
+    out.push(r);
+  }
+  sheetData.rows = out;
+}
+
+function reorderKeyFirst(sheetData){
+  const idx = sheetData.header.findIndex(h =>
+    /^(clave|id|c[oó]digo|no\.?)$/i.test(String(h).trim())
+  );
+  if(idx <= 0) return;
+
+  const move = (arr) => {
+    const [v] = arr.splice(idx,1);
+    arr.unshift(v);
+  };
+  move(sheetData.header);
+  sheetData.rows.forEach(r => move(r.cells));
+}
+
+/* =========================================================
+   LINKS DE PRODUCTO — se aplican SOLO donde la celda está vacía
+   Amplía este diccionario con más claves cuando quieras.
+   ========================================================= */
+const LINKS_EXTRAS = {
+  // ── INST HIDROSANITARIA ──
+  'C-MED-IH-13': 'https://www.casamyers.com.mx/medidor-de-flujo-de-agua-fria-en-metros-cubicos-de-1-2-13mm',
+  'C-Q-03':      'https://www.kuroda.com/tanque-vertical-10-000-l-smart-negro-rotoplas.html',
+
+  // ── MUEBLES DE BAÑO ──
+  'PF-04': 'https://www.coflex.com.mx/productos/archivos/ft_P-B9056.pdf',
+  'PF-05': 'https://esatto.com.mx/product/lavabo-ceramico-empotrar-oc-078/',
+  'PF-06': 'https://www.gilsa.com/media/akeneo_connector/asset_files/s/p/spg_100_ficha_tecnica_5666.pdf',
+  'PF-16': 'https://esatto.com.mx/product/lavabo-ceramico-sobreponer-oc-030/',
+
+  // ── ACCESORIOS Y EQUIPOS DE COCINAS ──
+  'EP-01': 'https://www.teka.com/es-mx/producto/hlf-82-g1-g-bm_111100001/',
+  'EP-02': 'https://www.teka.com/es-mx/producto/placa-vitroceramica-de-4-zonas-de-60-cm_112550009/',
+  'EP-03': 'https://www.teka.com/es-mx/producto/square-50-40-tg-b_115230020/',
+  'EP-05': 'https://www.teka.com/es-mx/producto/mlh-845-ss-mx_111910000/',
+  'EP-09': 'https://www.teka.com/es-mx/producto/mwg-11x_40590830/',
+  'PF-66': 'https://helvex.com/mx/e-310-eb.html',
+  'PF-33': 'https://urrea.mx/cocina/llaves-para-cocina/monomando-para-cocina-semi-profesional-9499-2',
+
+  // ── CONTACTOS/APAGADORES ──
+  'EF-03':       'https://www.simonelectric.com/es-mx/2601425-068-placa-c-interruptor-circuito-por-falla-tierra-gfci-autotest-c-placa-15a-125v-grafito-s26',
+  '25424-60':    'https://www.simonelectric.com/es-mx/25424-60-toma-corriente-duplex-2p-t-seguridad-placa-15a-127v-blanco-simon-25-plus',
+  '2602425-068': 'https://www.simonelectric.com/es-mx/2601425-068-placa-c-interruptor-circuito-por-falla-tierra-gfci-autotest-c-placa-15a-125v-grafito-s26',
+  '2600611-038': 'https://www.simonelectric.com/es-mx/2600611-038-placa-1-modulo-grafito-chasis-grafito-simon-26',
+  '2600201-038': 'https://www.simonelectric.com/es-mx/2600201-038-interruptor-sencillo-3-vias-10a-127v-grafito-simon-26',
+  '2600613-038': 'https://www.simonelectric.com/es-mx/2600613-038-placa-3-modulos-grafito-chasis-gafito-simon-26',
+
+  // Aquí puedes seguir añadiendo más:  'C-BOM-05': 'https://...',  'PW-01': 'https://...'
+};
+
+function fillEmptyLinks(sheetData){
+  const linkCols = sheetData.header
+    .map((h,i)=>({i,h}))
+    .filter(({h}) => /^link|referencia/i.test(String(h||'').trim()));
+
+  if(!linkCols.length) return;
+
+  const claveIdx = sheetData.header.findIndex(h =>
+    /^(clave|id|c[oó]digo|no\.?)$/i.test(String(h||'').trim())
+  );
+  if(claveIdx < 0) return;
+
+  sheetData.rows.forEach(r=>{
+    if(r.sec) return;
+    const clave = String(r.cells[claveIdx]||'').trim();
+    const extra = LINKS_EXTRAS[clave];
+    if(!extra) return;
+
+    linkCols.forEach(({i})=>{
+      const v = String(r.cells[i]||'').trim();
+      if(v === '' || /^#(VALUE|REF|N\/A)/i.test(v)){
+        r.cells[i] = extra;
+      }
+    });
+  });
+}
+
+/* Aplicar en orden:
+   1) Merge UBICACION en CANCELERIAS (usa índices originales)
+   2) Reordenar CLAVE al inicio (todos)
+   3) Rellenar links vacíos (todos)
+*/
+mergeUbicacionRows(DATA['CANCELERIAS']);
+ORDER.forEach(k => reorderKeyFirst(DATA[k]));
+ORDER.forEach(k => fillEmptyLinks(DATA[k]));
 
 /* =========================================================
    MAPEO DEL ÍNDICE → HOJA DESTINO
@@ -936,29 +1103,24 @@ const INDICE_ALIAS = {
   'carpinterias':'CARPINTERIA MODULOS',
   'herrerias':'HERRERIAS',
   'muebles de bano':'MUEBLES DE BAÑO',
-  'accesorios de bano':'ACCESORIOS DE BAÑO',
-  'accesorios electricos':'',
-  'chute':''
+  'accesorios de bano':'ACCESORIOS DE BAÑO'
 };
 
 function findSheetForLabel(label){
   const t=String(label).trim();
   if(!t) return null;
-  // Coincidencia exacta con una hoja
   if(ORDER.includes(t)) return t;
-  // Alias explícito
   const n=norm(t);
   if(Object.prototype.hasOwnProperty.call(INDICE_ALIAS,n)){
     const target=INDICE_ALIAS[n];
     return target || null;
   }
-  // Coincidencia normalizada contra las claves de hoja
   const found=ORDER.find(k=>norm(k)===n);
   return found || null;
 }
 
 /* =========================================================
-   CLASIFICACIÓN DE COLUMNAS
+   CLASIFICACIÓN DE COLUMNAS Y DINERO
    ========================================================= */
 function classifyHeader(h){
   const t=String(h||'').toLowerCase().trim();
@@ -973,6 +1135,37 @@ function classifyHeader(h){
   if(/capacidad|medida|dimension/.test(t)) return 'col-cap';
   if(/equipo|mueble|accesorio|tipo|marca|modelo|acabado/.test(t)) return 'col-text';
   return '';
+}
+
+function isMoneyHeader(h){
+  return /\bp\.?\s*u\b|total|importe|precio/i.test(String(h||''));
+}
+function isTotalHeader(h){
+  return /total|importe/i.test(String(h||''));
+}
+function fmtMXN(n){
+  return '$' + n.toLocaleString('es-MX',{minimumFractionDigits:2,maximumFractionDigits:2});
+}
+
+function cellHTML(raw, headerText){
+  const t=String(raw).trim();
+  const cls=classifyHeader(headerText);
+
+  if(!t) return `<td${cls?` class="${cls} empty"`:' class="empty"'}>—</td>`;
+
+  // Links: no formatear como dinero
+  if(cls !== 'col-link' && isMoneyHeader(headerText) && /^-?[\d]+(\.\d+)?$/.test(t)){
+    const n=parseFloat(t);
+    const totalCls = isTotalHeader(headerText) ? ' is-total' : '';
+    return `<td class="money${totalCls}">${fmtMXN(n)}<span class="cur">MXN</span></td>`;
+  }
+
+  const h=inline(t);
+  const extra=[];
+  if(/#(VALUE|REF|N\/A|DIV\/0)/i.test(t)) extra.push('err');
+  else if(/^-?[\d,]+(\.\d+)?$/.test(t)) extra.push('num');
+  const allClasses=[cls,...extra].filter(Boolean).join(' ');
+  return `<td${allClasses?` class="${allClasses}"`:''}>${h}</td>`;
 }
 
 /* =========================================================
@@ -1011,30 +1204,32 @@ function selectSheet(key){
   document.querySelector('.content').scrollTop=0;
 }
 
-function cellHTML(raw, headerText){
-  const t=String(raw).trim();
-  const cls=classifyHeader(headerText);
-  if(!t) return `<td${cls?` class="${cls} empty"`:' class="empty"'}>—</td>`;
-  const h=inline(t);
-  const extra=[];
-  if(/#(VALUE|REF|N\/A|DIV\/0)/i.test(t)) extra.push('err');
-  else if(/^-?[\d,]+(\.\d+)?$/.test(t)) extra.push('num');
-  const allClasses=[cls,...extra].filter(Boolean).join(' ');
-  return `<td${allClasses?` class="${allClasses}"`:''}>${h}</td>`;
-}
-
 function renderSheet(key){
   const d=DATA[key];
   const nCols=d.header.length;
   const isIndice = key === 'INDICE';
   const catColIdx = isIndice ? d.header.findIndex(h => /categor/i.test(h)) : -1;
 
+  // Filtrar ÍNDICE: solo categorías principales
+  let rowsToRender = d.rows;
+  if(isIndice){
+    rowsToRender = d.rows.filter(r => {
+      if(r.sec) return false;
+      const first = String(r.cells[0] || '').trim();
+      return /^\d+$/.test(first);
+    });
+  }
+
   let html=`<div class="sheethead">
       <h2>${esc(key)}</h2>
-      <div class="meta">${d.rows.filter(r=>!r.sec).length} registros · ${nCols} columnas${isIndice?' · haz clic en una categoría para abrir su hoja':''}</div>
+      <div class="meta">${
+        isIndice
+          ? `${rowsToRender.length} categorías · haz clic en cualquiera para abrir su hoja`
+          : `${rowsToRender.filter(r=>!r.sec).length} registros · ${nCols} columnas`
+      }</div>
     </div>`;
 
-  if(!d.rows.length && !d.header.length){
+  if(!rowsToRender.length && !d.header.length){
     content.innerHTML=html+`<div class="empty-state">Hoja sin datos.</div>`;return;
   }
 
@@ -1047,20 +1242,38 @@ function renderSheet(key){
   });
   html+=`</tr></thead><tbody>`;
 
-  d.rows.forEach(r=>{
+  rowsToRender.forEach(r=>{
+    // --- Filas especiales (divisores / sub-headers) ---
     if(r.sec){
-      const txt=r.cells.filter(c=>c).map(c=>inline(c)).join(' &nbsp;·&nbsp; ');
-      html+=`<tr class="secrow"><td colspan="${nCols}">${txt}</td></tr>`;
+      if(r.subheader){
+        html += `<tr class="subheader-row">`;
+        for(let i=0;i<nCols;i++){
+          const v = r.cells[i] || '';
+          if(v){
+            html += `<td class="subheader-cell">${inline(v)}</td>`;
+          } else {
+            html += `<td class="subheader-cell empty-cell">—</td>`;
+          }
+        }
+        html += `</tr>`;
+      } else {
+        const txt = r.cells.filter(c => c && !/^#(VALUE|REF|N\/A|DIV)/i.test(c))
+                           .map(c=>inline(c)).join(' &nbsp;·&nbsp; ');
+        html += `<tr class="secrow"><td colspan="${nCols}">${txt}</td></tr>`;
+      }
       return;
     }
+
+    // --- Fila normal ---
     const code = codeIdx>=0 ? (r.cells[codeIdx]||'').trim() : '';
     const img  = IMAGENES[code];
+    const trClass = isIndice ? ' class="indice-row"' : '';
 
-    html+=`<tr>`;
+    html += `<tr${trClass}>`;
     r.cells.forEach((c,i)=>{
       const headerTxt=(d.header[i]||'').toUpperCase();
 
-      // --- INDICE: columna CATEGORÍA → enlace a la hoja destino ---
+      // Índice: columna CATEGORÍA → enlace
       if(isIndice && i === catColIdx && String(c).trim() !== ''){
         const target = findSheetForLabel(c);
         if(target){
@@ -1071,29 +1284,28 @@ function renderSheet(key){
         return;
       }
 
-      // --- IMAGEN ---
+      // Imagen
       if(headerTxt.includes('IMAGEN')){
         if(img){
-          html+=`<td class="imgcell"><img src="${img}" alt="${esc(code)}" loading="lazy" onclick="abrirLightbox('${img}')"></td>`;
+          html += `<td class="imgcell"><img src="${img}" alt="${esc(code)}" loading="lazy" onclick="abrirLightbox('${img}')"></td>`;
         } else if(/^https?:\/\//i.test(c.trim())){
-          html+=`<td class="imgcell"><img src="${esc(c.trim())}" alt="${esc(code)}" loading="lazy" onclick="abrirLightbox('${esc(c.trim())}')"></td>`;
+          html += `<td class="imgcell"><img src="${esc(c.trim())}" alt="${esc(code)}" loading="lazy" onclick="abrirLightbox('${esc(c.trim())}')"></td>`;
         } else {
-          html+=`<td class="imgcell empty-img">Sin imagen</td>`;
+          html += `<td class="imgcell empty-img">Sin imagen</td>`;
         }
         return;
       }
 
-      // --- celda normal ---
-      html+=cellHTML(c, d.header[i]);
+      // Celda normal
+      html += cellHTML(c, d.header[i]);
     });
-    html+=`</tr>`;
+    html += `</tr>`;
   });
 
   html+=`</tbody></table></div>`;
   content.innerHTML=html;
   updateLive();
 
-  // Wiring de los enlaces del índice
   content.querySelectorAll('.indice-link').forEach(el=>{
     el.addEventListener('click', e=>{
       e.preventDefault();
@@ -1105,7 +1317,10 @@ function renderSheet(key){
 function filterLocal(q){
   const nq=norm(q);let shown=0,total=0;
   content.querySelectorAll('tbody tr').forEach(tr=>{
-    if(tr.classList.contains('secrow')){tr.classList.toggle('hide',!!nq);return;}
+    if(tr.classList.contains('secrow') || tr.classList.contains('subheader-row')){
+      tr.classList.toggle('hide', !!nq);
+      return;
+    }
     total++;
     const hit=!nq||norm(tr.textContent).includes(nq);
     tr.classList.toggle('hide',!hit);

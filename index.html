@@ -7,7 +7,7 @@
 <style>
   :root{
     --bg:#0b1220;--bg2:#131c31;--panel:#fff;--ink:#0f172a;--muted:#64748b;
-    --line:#e2e8f0;--accent:#2563eb;--accent2:#0ea5e9;--err:#dc2626;--formula:#7c3aed;
+    --line:#e2e8f0;--accent:#2563eb;--accent2:#0ea5e9;--err:#dc2626;
   }
   *{box-sizing:border-box}html,body{height:100%}
   body{margin:0;font-family:system-ui,-apple-system,"Segoe UI",Roboto,Arial,sans-serif;
@@ -45,65 +45,52 @@
   .sheethead{display:flex;align-items:baseline;gap:14px;flex-wrap:wrap;margin-bottom:12px}
   .sheethead h2{margin:0;font-size:19px;letter-spacing:-.2px}
   .sheethead .meta{font-size:12px;color:var(--muted)}
-
   .tablewrap{background:#fff;border:1px solid var(--line);border-radius:14px;overflow:auto;
     max-height:calc(100vh - 190px);box-shadow:0 1px 3px rgba(15,23,42,.06);-webkit-overflow-scrolling:touch}
-  table{border-collapse:separate;border-spacing:0;width:100%;font-size:12.5px;
-    table-layout:auto;min-width:max-content}
+  table{border-collapse:separate;border-spacing:0;width:100%;font-size:12.5px;table-layout:auto;min-width:max-content}
   thead th{position:sticky;top:0;z-index:5;background:#0f172a;color:#e2e8f0;text-align:left;
     padding:13px 16px;font-size:11px;font-weight:700;letter-spacing:.6px;text-transform:uppercase;
     border-bottom:2px solid #1e293b;white-space:nowrap;vertical-align:middle}
-
-  /* ===== Filas con más contraste ===== */
   tbody td{padding:12px 16px;border-bottom:1px solid #cbd5e1;vertical-align:top;line-height:1.55;
-    word-break:break-word;overflow-wrap:anywhere;min-width:70px;
-    border-left:4px solid transparent;transition:background .12s,border-left-color .12s}
-  tbody tr:nth-child(odd)  td{ background:#ffffff; }
-  tbody tr:nth-child(even) td{ background:#eef2f7; }
-  tbody tr:nth-child(even) td:first-child{ border-left-color:#bfdbfe; }
-  tbody tr:hover td{ background:#dbeafe; }
-  tbody tr:hover td:first-child{ border-left-color:#2563eb; }
-
+    word-break:break-word;overflow-wrap:anywhere;min-width:70px;border-left:4px solid transparent;
+    transition:background .12s,border-left-color .12s}
+  tbody tr:nth-child(odd)  td{background:#ffffff}
+  tbody tr:nth-child(even) td{background:#eef2f7}
+  tbody tr:nth-child(even) td:first-child{border-left-color:#bfdbfe}
+  tbody tr:hover td{background:#dbeafe}
+  tbody tr:hover td:first-child{border-left-color:#2563eb}
   tbody tr.secrow td{background:#1e3a8a !important;color:#f8fafc;font-weight:700;font-size:11.5px;
     letter-spacing:.7px;text-transform:uppercase;padding:10px 16px;
     border-bottom:2px solid #1e40af;border-left-color:#1e40af !important}
-
-  /* ===== Sub-headers intermedios ===== */
   td.subheader-cell{background:#475569 !important;color:#f8fafc !important;font-size:10.5px;
     font-weight:700;letter-spacing:.7px;text-transform:uppercase;padding:9px 16px;
-    border-top:2px solid #1e293b;border-bottom:2px solid #1e293b;
-    border-left:4px solid #0ea5e9;text-align:center;white-space:nowrap;min-width:70px;vertical-align:middle}
+    border-top:2px solid #1e293b;border-bottom:2px solid #1e293b;border-left:4px solid #0ea5e9;
+    text-align:center;white-space:nowrap;min-width:70px;vertical-align:middle}
   td.subheader-cell.empty-cell{background:#1e293b !important;color:transparent !important;border-left-color:#0f172a}
   tbody tr.subheader-row:hover td.subheader-cell{background:#334155 !important;color:#fff !important}
   tbody tr.subheader-row:hover td.subheader-cell.empty-cell{background:#1e293b !important;color:transparent !important}
-
-  /* ===== Índice ===== */
   tbody tr.indice-row td{padding:18px 22px;font-size:14px;border-bottom:2px solid #cbd5e1;border-left-width:6px}
-  tbody tr.indice-row:nth-child(odd)  td{ background:#ffffff; }
-  tbody tr.indice-row:nth-child(even) td{ background:#eff6ff; }
+  tbody tr.indice-row:nth-child(odd)  td{background:#ffffff}
+  tbody tr.indice-row:nth-child(even) td{background:#eff6ff}
   tbody tr.indice-row td:first-child{border-left-color:#2563eb;font-weight:800;font-size:16px;
     color:#1e3a8a;text-align:center;min-width:70px}
-  tbody tr.indice-row:nth-child(even) td:first-child{ border-left-color:#0ea5e9; }
-  tbody tr.indice-row:hover td{ background:#dbeafe; }
-  tbody tr.indice-row:hover td:first-child{ border-left-color:#1e40af; background:#bfdbfe; }
-
-  /* ===== Moneda MXN ===== */
+  tbody tr.indice-row:nth-child(even) td:first-child{border-left-color:#0ea5e9}
+  tbody tr.indice-row:hover td{background:#dbeafe}
+  tbody tr.indice-row:hover td:first-child{border-left-color:#1e40af;background:#bfdbfe}
   td.money{text-align:right;font-variant-numeric:tabular-nums;white-space:nowrap;
     min-width:130px;padding-left:20px;padding-right:20px}
   td.money .cur{font-size:10.5px;color:var(--muted);font-weight:600;margin-left:3px}
   td.money.is-total{font-weight:700;color:#166534;background:#f0fdf4}
-  tbody tr:hover td.money.is-total{ background:#dcfce7; }
-
-  /* ===== Clases por tipo de columna ===== */
-  th.col-img,   td.col-img   {text-align:center;min-width:120px;max-width:160px}
-  th.col-id,    td.col-id    {min-width:80px;white-space:nowrap;font-weight:600}
-  th.col-unit,  td.col-unit  {min-width:65px;text-align:center;white-space:nowrap}
-  th.col-qty,   td.col-qty   {min-width:80px;text-align:right;white-space:nowrap;font-variant-numeric:tabular-nums}
-  th.col-money, td.col-money {min-width:110px;text-align:right;white-space:nowrap;font-variant-numeric:tabular-nums}
-  th.col-link,  td.col-link  {min-width:120px;max-width:220px;word-break:break-all;font-size:11.5px}
-  th.col-desc,  td.col-desc  {min-width:280px;max-width:560px}
-  th.col-text,  td.col-text  {min-width:120px;max-width:280px}
-  th.col-cap,   td.col-cap   {min-width:140px;max-width:260px}
+  tbody tr:hover td.money.is-total{background:#dcfce7}
+  th.col-img,td.col-img{text-align:center;min-width:120px;max-width:160px}
+  th.col-id,td.col-id{min-width:80px;white-space:nowrap;font-weight:600}
+  th.col-unit,td.col-unit{min-width:65px;text-align:center;white-space:nowrap}
+  th.col-qty,td.col-qty{min-width:80px;text-align:right;white-space:nowrap;font-variant-numeric:tabular-nums}
+  th.col-money,td.col-money{min-width:110px;text-align:right;white-space:nowrap;font-variant-numeric:tabular-nums}
+  th.col-link,td.col-link{min-width:120px;max-width:220px;word-break:break-all;font-size:11.5px}
+  th.col-desc,td.col-desc{min-width:280px;max-width:560px}
+  th.col-text,td.col-text{min-width:120px;max-width:280px}
+  th.col-cap,td.col-cap{min-width:140px;max-width:260px}
   td.num,td.calc{text-align:right;font-variant-numeric:tabular-nums;white-space:nowrap;
     min-width:100px;padding-left:20px;padding-right:20px}
   td.calc{font-weight:600;color:#0f172a}
@@ -111,8 +98,6 @@
   td.empty{color:#cbd5e1}
   td a{color:var(--accent);text-decoration:none;border-bottom:1px dotted #93c5fd;word-break:break-all}
   td a:hover{color:#1d4ed8;border-bottom-style:solid}
-
-  /* ===== Índice: enlaces ===== */
   td.cat-link{min-width:230px;padding:10px 16px !important}
   .indice-link{display:inline-flex;align-items:center;gap:8px;padding:8px 14px;border-radius:8px;
     background:#eff6ff;border:1px solid #bfdbfe;color:var(--accent);font-weight:600;font-size:13px;
@@ -121,8 +106,6 @@
   .indice-link::before{content:"→";font-weight:400;color:var(--muted);font-size:13px;transition:.15s}
   .indice-link:hover::before{color:var(--accent);transform:translateX(1px)}
   .indice-note{display:inline-block;color:#94a3b8;font-size:11.5px;font-style:italic;padding:4px 0}
-
-  /* ===== Imágenes ===== */
   td.imgcell{text-align:center;padding:8px}
   td.imgcell img{max-width:140px;max-height:110px;border-radius:8px;cursor:zoom-in;
     transition:.15s;border:1px solid var(--line);object-fit:cover}
@@ -131,8 +114,6 @@
   #lightbox{position:fixed;inset:0;background:rgba(0,0,0,.85);display:none;
     align-items:center;justify-content:center;z-index:1000;padding:30px;cursor:zoom-out}
   #lightbox img{max-width:90vw;max-height:90vh;border-radius:10px}
-
-  /* ===== Búsqueda global ===== */
   .gresults{display:flex;flex-direction:column;gap:12px}
   .gcard{background:#fff;border:1px solid var(--line);border-left:4px solid var(--accent2);
     border-radius:10px;padding:14px 18px;box-shadow:0 1px 2px rgba(15,23,42,.05)}
@@ -144,13 +125,11 @@
   .empty-state{background:#fff;border:1px dashed #cbd5e1;border-radius:14px;padding:60px 20px;text-align:center;color:var(--muted)}
   .toolbar{display:flex;gap:8px;align-items:center;margin-left:auto}
   .badge-live{font-size:11.5px;color:var(--muted);margin-right:4px}
-
   @media (max-width:900px){
     .layout{flex-direction:column}
     .sidebar{position:static;width:100%;flex:none;height:auto;max-height:230px;padding-bottom:16px}
     .tablewrap{max-height:none}.content{padding:12px}thead th{position:static}
-    tbody td{padding:10px 12px}
-    tbody tr.indice-row td{padding:14px 16px;font-size:13px}
+    tbody td{padding:10px 12px}tbody tr.indice-row td{padding:14px 16px;font-size:13px}
   }
   @media print{
     .sidebar,.topbar{display:none}
@@ -189,80 +168,38 @@
 
 <script>
 /* =========================================================
-   IMÁGENES por clave (opcional)
+   MAPA DE IMÁGENES (opcional, por si agregas URLs manuales)
    ========================================================= */
 const IMAGENES = {
-  // "AA-3.1": "img/AA-3.1.jpg",
+  // "AA-3.1": "https://.../imagen.jpg",
 };
 
 /* =========================================================
-   DATOS
+   DATOS ACTUALIZADOS
    ========================================================= */
 const SHEETS = {
 "INDICE": `
 | No. | CATEGORÍA | SUBCATEGORÍA / DETALLE |
 |--:|:-----|:-|
 | 1 | HVAC |  |
-|  |  | EXTRACTORES |
-|  |  | VENTILADORES |
 | 2 | I HIDROSANITARIA |  |
-|  |  | EQUIPOS |
 | 3 | PLUVIAL |  |
-|  |  | BOMBAS |
-|  |  | COLADERAS |
 | 4 | PCI |  |
-|  |  | EQUIPOS |
-|  |  | ACCESORIOS |
 | 5 | I. ELECTRICA |  |
-|  |  | EQUIPOS |
 | 5 | CALENTADORES |  |
-|  |  | EQUIPOS |
 | 6 | MUROS LIGEROS |  |
-|  |  | POR TIPO DE HOJA |
-|  |  | POR ENSAMBLE |
 | 7 | ACABADOS (PISOS / MUROS / PLAFONES) |  |
-|  |  | PISOS |
-|  |  | PLAFONES |
-|  |  | MUROS |
-| 8 | LUMINARIAS | LISTA GENERAL |
-|  |  | SISTEMA DE RIELES |
-| 8 | CONTACTOS/APAGADORES | CONTACTOS |
-|  |  | APAGADORES |
+| 8 | LUMINARIAS |  |
+| 8 | CONTACTOS/APAGADORES |  |
 | 8 | SISTEMA TIRAS LED |  |
-|  |  | LEDS |
 | 8 | SISTEMA DE RIELES |  |
-|  |  | LEDS |
 | 9 | CANCELERÍAS |  |
-|  |  | VENTANAS |
-|  |  | LOUVERS |
-|  |  | PUERTAS |
-| 10 | COCINAS | Módulos |
-|  |  | Materialidad |
-|  |  | Cantidad |
-|  |  | Lavabos |
-| 11 | CARPINTERÍAS | Puertas |
-|  |  | Closets |
-|  |  | Vanity |
-|  |  | Herrajes |
-| 12 | HERRERÍAS | BARANDALES |
-|  |  | PUERTAS DE EMERGENCIA |
-|  |  | PUERTAS DE BODEGAS |
-| 13 | ACCESORIOS ELÉCTRICOS | Apagadores |
-|  |  | Contactos |
-|  |  | Wi-Fi |
-| 14 | MUEBLES DE BAÑO | WC |
-|  |  | Lavabos |
-|  |  | Mamparas |
-|  |  | Espejo |
-|  |  | Calentadores electricos |
-| 15 | ACCESORIOS DE BAÑO | Porta papel |
-|  |  | Toallero |
-|  |  | Hook |
-|  |  | Monomando |
-|  |  | Cebolla |
-|  |  | Cespol |
-|  |  | Llaves regadera |
-|  |  | Coladera |
+| 10 | COCINAS |  |
+| 11 | CARPINTERÍAS |  |
+| 12 | HERRERÍAS |  |
+| 13 | ACCESORIOS ELÉCTRICOS |  |
+| 14 | MUEBLES DE BAÑO |  |
+| 15 | ACCESORIOS DE BAÑO |  |
 | 16 | CHUTE |  |
 `,
 
@@ -364,43 +301,46 @@ const SHEETS = {
 | USG BASECOAT | USG | USG BASECOAT® | https://www.usg.com/es-MX/p/producto/usg-durock-forte-basecoat-flexible-cement-compound-ADBR | #VALUE! | BULTO | =(0.3325)*(G10+G12) |  | OPCION 1 | PROTEKTO PLUS PR THE HOME DEPOT | Para uso en tableros Durock forte y Densglass |
 |  |  |  |  |  |  |  |  | 648 | =G26*I27 |  |
 | !! | DESCRIPCIÓN | TIPO | CLAVE | ESPESOR | CARACTERISTICA PARTICULAR | UNIDAD | M2 | PIEZAS | P.U. IVA INCLUIDO | TOTAL | CONSIDERACIONES |
-| !! | POR TIPO DE MURO ( LAMBRINES ) |  |  |  |  |  |  |  | =SUM(J31:J43) |  |
-| MURO LAMBRIN 1 PANEL ULTRALIGHT 12.7 MM. BASTIDOR 4.10 CM SIN AISLAMIENTO. | LAMBRIN | MLP-1 | 0.0537 |  | M2 | 1001.7304 | N/A |  | =G31*I31 |  |
-| MURO LAMBRIN A UNA CARA PANEL TABLAROCA® ANTI-MOHO 12.7 MM, BASTIDOR USG 4.10 CM. | LAMBRIN | MLP-3 | 0.0537 |  | M2 | 18.236 | N/A |  | =G32*I32 |  |
-| MURO LAMBRIN 1 PANEL DUROCK NEXT GEN E+ 12.7 MM. BASTIDOR 4.10 CM SIN AISLAMIENTO. | LAMBRIN | MLP-5 | 0.0537 |  | M2 | 250.452 | N/A |  | =G33*I33 |  |
-| MURO LAMBRIN 1 PANEL ULTRALIGHT 12.7 MM. BASTIDOR 6.35 CM CON AISLAMIENTO 2-1/2 pulg. | LAMBRIN | MLP-7 | 0.0762 |  | M2 | 231.03033 | N/A |  | =G34*I34 |  |
-| MURO LAMBRIN 1 PANEL ANTI-MOHO 12.7 MM. BASTIDOR 6.35 CM CON AISLAMIENTO 2-1/2 pulg. | LAMBRIN | MLP-9 | 0.0762 |  | M2 | 725.6152 | N/A |  | =G35*I35 |  |
-| MURO LAMBRIN 1 PANEL DUROCK NEXT GEN E+ 12.7 MM. BASTIDOR 6.35 CM CON AISLAMIENTO 2-1/2 pulg. | LAMBRIN | MLP-11 | 0.0762 |  | M2 | 1.034 | N/A |  | =G36*I36 |  |
-| MURO LAMBRIN 1 PANEL ULTRALIGHT 12.7 MM. BASTIDOR 15.24 CM CON AISLAMIENTO 3-1/2 pulg. | LAMBRIN | MLP-19 | 0.1651 |  | M2 | 453.121 | N/A |  | =G37*I37 |  |
-| MURO LAMBRIN EXTERIOR 1 PANEL DENSGLASS 12.7 MM. BASTIDOR 6.35 CM CON AISLAMIENTO 2-1/2 pulg. | LAMBRIN | MLPE-3 | 0.0762 |  | M2 | 1595.943 | N/A |  | =G38*I38 |  |
-| MURO LAMBRIN EXTERIOR 1 PANEL DENSGLASS 12.7 MM. BASTIDOR 15.24 CM CON AISLAMIENTO 3-1/2 pulg. | LAMBRIN | MLPE-7 | 0.1651 |  | M2 | 213.7 | N/A |  | =G39*I39 |  |
-| !! | POR TIPO DE MURO ( CHAPEADOS ) |  |  |  |  |  |  |  | =SUM(J41:J53) |  |
-| REVESTIMIENTO ADHERIDO 1 PANEL TABLAROCA ANTI-MOHO 12.7 MM. JUNTAS: PERFACINTA + REDIMIX. | CHAPEADO | LAP-02 | 0.0327 |  | M2 | 182.4 | N/A |  | =G41*I41 |  |
-| !! | POR TIPO DE MURO ( MUROS A DOS CARAS ) |  |  |  |  |  |  |  | =SUM(J43:J55) |  |
-| MURO EXTERIOR 2 CARAS MPE-4. DENSGLASS EXT / ULTRALIGHT INT. | MURO 2 CARAS | MPE-4 | 0.1778 |  | M2 | 6.75 | N/A |  | =G43*I43 |  |
-| MURO EXTERIOR 2 CARAS MPE-5. | MURO 2 CARAS | MPE-5 | 0.1778 |  | M2 | 3.78 | N/A |  | =G44*I44 |  |
-| MURO EXTERIOR 2 CARAS MPE-7. | MURO 2 CARAS | MPE-7 | 0.1778 |  | M2 | 2.42 | N/A |  | =G45*I45 |  |
-| MURO EXTERIOR 2 CARAS MPE-9. DENSGLASS EXT / ULTRALIGHT INT. | MURO 2 CARAS | MPE-9 | 0.1778 |  | M2 | 942.9001 | N/A |  | =G46*I46 |  |
-| MURO EXTERIOR 2 CARAS MPE-10. DENSGLASS EXT / ANTI-MOHO INT. | MURO 2 CARAS | MPE-10 | 0.1778 |  | M2 | 602.785 | N/A |  | =G47*I47 |  |
-| MURO EXTERIOR 2 CARAS MPE-11. DENSGLASS EXT / DUROCK NEXT GEN E+ INT. | MURO 2 CARAS | MPE-11 | 0.1778 |  | M2 | 474.828 | N/A |  | =G48*I48 |  |
-| MURO 2 CARAS MP-1. ULTRALIGHT EXT / ULTRALIGHT INT. | MURO 2 CARAS | MP-1 | 0.0889 |  | M2 | 1516.1816 | N/A |  | =G49*I49 |  |
-| MURO 2 CARAS MP-2. ANTI-MOHO EXT / ULTRALIGHT INT. | MURO 2 CARAS | MP-2 | 0.0889 |  | M2 | 2252.99175 | N/A |  | =G50*I50 |  |
-| MURO 2 CARAS MP-3. ANTI-MOHO EXT / ANTI-MOHO INT. | MURO 2 CARAS | MP-3 | 0.0889 |  | M2 | 181.333 | N/A |  | =G51*I51 |  |
-| MURO 2 CARAS MP-4. DUROCK EXT / ANTI-MOHO INT. | MURO 2 CARAS | MP-4 | 0.0889 |  | M2 | 9.28 | N/A |  | =G52*I52 |  |
-| MURO 2 CARAS MP-5. DUROCK EXT / DUROCK INT. | MURO 2 CARAS | MP-5 | 0.0889 |  | M2 | 192.324 | N/A |  | =G53*I53 |  |
-| MURO 2 CARAS MP-6. DUROCK EXT / ULTRALIGHT INT. | MURO 2 CARAS | MP-6 | 0.0889 |  | M2 | 830.024 | N/A |  | =G54*I54 |  |
-| MURO 2 CARAS MP-13. ULTRALIGHT EXT / ULTRALIGHT INT. BASTIDOR 9.20 CM. | MURO 2 CARAS | MP-13 | 0.1174 |  | M2 | 177.336 | N/A |  | =G55*I55 |  |
-| MURO 2 CARAS MP-15. ANTI-MOHO EXT / ANTI-MOHO INT. BASTIDOR 9.20 CM. | MURO 2 CARAS | MP-15 | 0.1174 |  | M2 | 5.44 | N/A |  | =G56*I56 |  |
-| MURO 2 CARAS MP-25. ULTRALIGHT EXT / ULTRALIGHT INT. BASTIDOR 15.24 CM. | MURO 2 CARAS | MP-25 | 0.1778 |  | M2 | 565.83975 | N/A |  | =G57*I57 |  |
-| MURO 2 CARAS MP-26. ANTI-MOHO EXT / ULTRALIGHT INT. BASTIDOR 15.24 CM. | MURO 2 CARAS | MP-26 | 0.1778 |  | M2 | 2.23 | N/A |  | =G58*I58 |  |
-| MURO PANEL DOBLE MPD-1. 3 tableros de yeso + 2 bastidores. | MURO 2 CARAS | MPD-1 | 0.1778 |  | M2 | 615.883 | N/A |  | =G59*I59 |  |
-| MURO PANEL DOBLE MPD-2. Antihumedad + yeso + yeso. | MURO 2 CARAS | MPD-2 | 0.1778 |  | M2 | 167.671 | N/A |  | =G60*I60 |  |
-| MURO PANEL DOBLE MPD-3. Antihumedad + yeso + antihumedad. | MURO 2 CARAS | MPD-3 | 0.1778 |  | M2 | 268.371 | N/A |  | =G61*I61 |  |
+| !! | MUROS LIGEROS MATERIALES X M2 INCLUYE REDIMIX. BASTIDOR, TORNILLERIA |  |  |  |  |  |  |  | =J31+J41+J43+J50+J61 |  |
+| !! | POR TIPO DE MURO ( LAMBRINES ) |  |  |  |  |  |  |  | =SUM(J32:J40) |  |
+| MLP-1 MURO LAMBRIN 1 PANEL ULTRALIGHT 12.7 MM. BASTIDOR 4.10 CM CAL. 26 @41 CM SIN AISLAMIENTO. | LAMBRINES | MLP-1 | =0.041+0.0127 |  | M2 | 1001.73 |  | 281.0052 | =G32*I32 | PRECIO DE ANALISIS DE P.U. CON IVA 8% |
+| MLP-3 MURO LAMBRIN A UNA CARA PANEL TABLAROCA® ANTI-MOHO 12.7 MM. BASTIDOR USG 4.10 CM cal. 20 @ 61 CM. | LAMBRINES | MLP-3 | =0.041+0.0127 |  | M2 | 18.24 |  | 401.6736 | =G33*I33 | PRECIO DE ANALISIS DE P.U. CON IVA 8% |
+| MLP-5 MURO LAMBRIN 1 PANEL DUROCK NEXT GEN E+ 12.7 MM. BASTIDOR 4.10 CM CAL. 20 @ 41 CM SIN AISLAMIENTO. | LAMBRINES | MLP-5 | =0.041+0.0127 |  | M2 | 250.45 |  | 710.9316 | =G34*I34 | PRECIO DE ANALISIS DE P.U. CON IVA 8% |
+| MLP-7 MURO LAMBRIN 1 PANEL ULTRALIGHT 12.7 MM. BASTIDOR 6.35 CM CAL. 26 @ 41 CM CON AISLAMIENTO 2-1/2 pulg. | LAMBRINES | MLP-7 | =0.0635+0.0127 |  | M2 | 231.03 |  | 373.9284 | =G35*I35 | PRECIO DE ANALISIS DE P.U. CON IVA 8% |
+| MLP-9 MURO LAMBRIN 1 PANEL ANTI-MOHO 12.7 MM. BASTIDOR 6.35 CM CAL. 26 @41 CM, CON AISLAMIENTO 2-1/2 pulg. | LAMBRINES | MLP-9 | =0.0635+0.0127 |  | M2 | 725.37 |  | 413.8344 | =G36*I36 | PRECIO DE ANALISIS DE P.U. CON IVA 8% |
+| MLP-11 MURO LAMBRIN 1 PANEL DUROCK NEXT GEN E+ 12.7 MM. BASTIDOR 6.35 CM CAL. 20 @41 CM, CON AISLAMIENTO 2-1/2 pulg. | LAMBRINES | MLP-11 | =0.0635+0.0127 |  | M2 | 1.03 |  | 836.8704 | =G37*I37 | PRECIO DE ANALISIS DE P.U. CON IVA 8% |
+| MLP-19 MURO LAMBRIN 1 PANEL ULTRALIGHT 12.7 MM. BASTIDOR 15.24 CM CAL. 26 @ 41 CM CON AISLAMIENTO 3-1/2 pulg. | LAMBRINES | MLP-19 | =0.1524+0.0127 |  | M2 | 453.12 |  | 569.376 | =G38*I38 | PRECIO DE ANALISIS DE P.U. CON IVA 8% |
+| MLPE-3 MURO LAMBRIN EXTERIOR 1 PANEL DENSGLASS 12.7 MM. BASTIDOR 6.35 CM CAL. 20 @41CM, CON AISLAMIENTO 2-1/2 pulg. Y MEMBRANA IMPERMEABLE TYVEK. | LAMBRINES | MLPE-3 | =0.0635+0.0127 |  | M2 | 1595.94 |  | 869.7348 | =G39*I39 | PRECIO DE ANALISIS DE P.U. CON IVA 8% |
+| MLPE-7 MURO LAMBRIN EXTERIOR 1 PANEL DENSGLASS 12.7 MM. BASTIDOR 15.24 CM CAL. 20, @41 CM, CON AISLAMIENTO 3-1/2 pulg. Y MEMBRANA TYVEK. | LAMBRINES | MLPE-7 | =0.1524+0.0127 |  | M2 | 213.7 |  | 1299.2292 | =G40*I40 | PRECIO DE ANALISIS DE P.U. CON IVA 8% |
+| !! | POR TIPO DE MURO ( CHAPEADOS ) |  |  |  |  |  |  |  | =SUM(J42) |  |
+| LAP-02 REVESTIMIENTO ADHERIDO A BASE DE 1 PANEL TABLAROCA ANTI-MOHO 12.7 MM. ADHESIVO RESISTOL NO MAS CLAVOS O PEGATBALA USG. | CHAPEADO | LAP-02 | =0.0127+0.02 |  | M2 | 182.4 | N/A | 234.2304 | =G42*I42 | PRECIO DE ANALISIS DE P.U. CON IVA 8% |
+| !! | POR TIPO DE MURO ( MUROS A DOS CARAS ) |  |  |  |  |  |  |  | =SUM(J44:J49) |  |
+| MPE-4 MURO EXTERIOR 2 CARAS: DENSGLASS EXT / ULTRALIGHT INT. BASTIDOR 15.24 CM CAL. 20 @ 41 CM, CON AISLAMIENTO 3-1/2 pulg. Y MEMBRANA TYVEK. | MUROS EXTERIORES A 2 CARAS | MPE-4 | =0.1524+0.0127+0.0127 |  | M2 | 6.75 | N/A | 1356.5772 | =G44*I44 | PRECIO DE ANALISIS DE P.U. CON IVA 8% |
+| MPE-5 MURO EXTERIOR 2 CARAS: DENSGLASS EXT / ULTRALIGHT INT. BASTIDOR 15.24 CM CAL. 20 @ 41 CM, CON AISLAMIENTO 3-1/2 pulg. Y MEMBRANA TYVEK. | MUROS EXTERIORES A 2 CARAS | MPE-5 | =0.1524+0.0127+0.0127 |  | M2 | 3.78 | N/A | 1356.5772 | =G45*I45 | PRECIO DE ANALISIS DE P.U. CON IVA 8% |
+| MPE-7 MURO EXTERIOR 2 CARAS: DENSGLASS EXT / ULTRALIGHT INT. BASTIDOR 15.24 CM CAL. 20 @ 41 CM, CON AISLAMIENTO 3-1/2 pulg. Y MEMBRANA TYVEK. | MUROS EXTERIORES A 2 CARAS | MPE-7 | =0.1524+0.0127+0.0127 |  | M2 | 3.2 | N/A | 1359.99 | =G46*I46 | PRECIO DE ANALISIS DE P.U. CON IVA 8% |
+| MPE-9 MURO EXTERIOR 2 CARAS: DENSGLASS EXT / ULTRALIGHT INT. BASTIDOR 15.24 CM CAL. 20 @ 41 CM, CON AISLAMIENTO 3-1/2 pulg. Y MEMBRANA TYVEK. | MUROS EXTERIORES A 2 CARAS | MPE-9 | =0.1524+0.0127+0.0127 |  | M2 | 942.9 | N/A | 1359.45 | =G47*I47 | PRECIO DE ANALISIS DE P.U. CON IVA 8% |
+| MPE-10 MURO EXTERIOR 2 CARAS: DENSGLASS EXT / ANTI-MOHO INT. BASTIDOR 15.24 CM CAL. 20 @41 CM, CON AISLAMIENTO 3-1/2 pulg. | MUROS EXTERIORES A 2 CARAS | MPE-10 | =0.1524+0.0127+0.0127 |  | M2 | 602.79 | N/A | 1325.0736 | =G48*I48 | PRECIO DE ANALISIS DE P.U. CON IVA 8% |
+| MPE-11 MURO EXTERIOR 2 CARAS: DENSGLASS EXT / DUROCK NEXT GEN E+ INT. BASTIDOR 15.24 CM CAL. 20 @41 CM CON AISLAMIENTO 3-1/2 pulg. Y MEMBRANA TYVEK. | MUROS EXTERIORES A 2 CARAS | MPE-11 | =0.1524+0.0127+0.0127 |  | M2 | 474.83 | N/A | 1618.9308 | =G49*I49 | PRECIO DE ANALISIS DE P.U. CON IVA 8% |
+| !! | POR TIPO DE MURO ( MUROS A DOS CARAS ) |  |  |  |  |  |  |  | =SUM(J51:J60) |  |
+| MURO 2 CARAS: ULTRALIGHT EXT / ULTRALIGHT INT. BASTIDOR 6.35 CM CAL. 20 CON AISLAMIENTO 2-1/2 pulg. | MUROS INTERIORES A 2 CARAS | MP-1 | =0.0635+0.0127+0.0127 |  | M2 | 1516.18 | N/A | 680.1948 | =G51*I51 | PRECIO DE ANALISIS DE P.U. CON IVA 8% |
+| MURO 2 CARAS: ANTI-MOHO EXT / ULTRALIGHT INT. BASTIDOR 6.35 CM CAL. 20 CON AISLAMIENTO 2-1/2 pulg. | MURO 2 CARAS | MP-2 | =0.0635+0.0127+0.0127 |  | M2 | 2252.99 | N/A | 720.09 | =G52*I52 | PRECIO DE ANALISIS DE P.U. CON IVA 8% |
+| MURO 2 CARAS: ANTI-MOHO EXT / ANTI-MOHO INT. BASTIDOR 6.35 CM CAL. 20 CON AISLAMIENTO 2-1/2 pulg. | MURO 2 CARAS | MP-3 | =0.0635+0.0127+0.0127 |  | M2 | 181.33 | N/A | 759.996 | =G53*I53 | PRECIO DE ANALISIS DE P.U. CON IVA 8% |
+| MURO 2 CARAS: DUROCK NEXT GEN E+ EXT / ANTI-MOHO INT. BASTIDOR 6.35 CM CAL. 20 CON AISLAMIENTO 2-1/2 pulg. | MURO 2 CARAS | MP-4 | =0.0635+0.0127+0.0127 |  | M2 | 9.28 | N/A | 975.1104 | =G54*I54 | PRECIO DE ANALISIS DE P.U. CON IVA 8% |
+| MURO 2 CARAS: DUROCK NEXT GEN E+ EXT / DUROCK NEXT GEN E+ INT. BASTIDOR 6.35 CM CAL. 20. | MURO 2 CARAS | MP-5 | =0.0635+0.0127+0.0127 |  | M2 | 192.32 | N/A | 1192.806 | =G55*I55 | PRECIO DE ANALISIS DE P.U. CON IVA 8% |
+| MURO 2 CARAS: DUROCK NEXT GEN E+ EXT / ULTRALIGHT INT. BASTIDOR 6.35 CM CAL. 20 CON AISLAMIENTO 2-1/2 pulg. | MURO 2 CARAS | MP-6 | =0.0635+0.0127+0.0127 |  | M2 | 830.02 | N/A | 935.2044 | =G56*I56 | PRECIO DE ANALISIS DE P.U. CON IVA 8% |
+| MURO 2 CARAS: ULTRALIGHT EXT / ULTRALIGHT INT. BASTIDOR 9.20 CM CAL. 20 CON AISLAMIENTO 3-1/2 pulg. | MURO 2 CARAS | MP-13 | =0.092+0.0127+0.0127 |  | M2 | 177.34 | N/A | 847.8432 | =G57*I57 | PRECIO DE ANALISIS DE P.U. CON IVA 8% |
+| MURO 2 CARAS: ANTI-MOHO EXT / ANTI-MOHO INT. BASTIDOR 9.20 CM CAL. 20 CON AISLAMIENTO 3-1/2 pulg. | MURO 2 CARAS | MP-15 | =0.092+0.0127+0.0127 |  | M2 | 5.44 | N/A | 927.6444 | =G58*I58 | PRECIO DE ANALISIS DE P.U. CON IVA 8% |
+| MURO 2 CARAS: ULTRALIGHT EXT / ULTRALIGHT INT. BASTIDOR 15.24 CM CAL. 20 CON AISLAMIENTO 3-1/2 pulg. | MURO 2 CARAS | MP-25 | =0.1524+0.0127+0.0127 |  | M2 | 565.84 | N/A | 1060.29 | =G59*I59 | PRECIO DE ANALISIS DE P.U. CON IVA 8% |
+| MURO 2 CARAS: ANTI-MOHO EXT / ULTRALIGHT INT. BASTIDOR 15.24 CM CAL. 20 CON AISLAMIENTO 3-1/2 pulg. | MURO 2 CARAS | MP-26 | =0.1524+0.0127+0.0127 |  | M2 | 2.76 | N/A | 1100.1852 | =G60*I60 | PRECIO DE ANALISIS DE P.U. CON IVA 8% |
+| !! | POR TIPO DE MURO ( MUROS A DOS CARAS ) |  |  |  |  |  |  |  | =SUM(J62:J64) |  |
+| MPD-1 MURO PANEL DOBLE: TABLERO DE YESO ULTRALIGHT EXT / ULTRALIGHT MED / ULTRALIGHT INT. 2 BASTIDORES PARALELOS 6.35 CM CAL. 20 @ 41 CM. | MUROS INTERIORES DOBLES A 2 CARAS | MPD-1 | =0.0635+0.0635+0.0127+0.0127+0.0127 |  | M2 | 615.88 | N/A | 615.88 | =G62*I62 | PRECIO DE ANALISIS DE P.U. CON IVA 8% |
+| MPD-2 MURO PANEL DOBLE: TABLERO DE YESO ANTIMOHO EXT / ULTRALIGHT MED / ULTRALIGHT INT. 2 BASTIDORES PARALELOS 6.35 CM CAL. 20 @ 41 CM. | MUROS INTERIORES DOBLES A 2 CARAS | MPD-2 | =0.0635+0.0635+0.0127+0.0127+0.0127 |  | M2 | 167.67 | N/A | 167.67 | =G63*I63 | PRECIO DE ANALISIS DE P.U. CON IVA 8% |
+| MPD-3 MURO PANEL DOBLE: TABLERO DE YESO ANTIMOHO EXT / ULTRALIGHT MED / ANTIMOHO INT. 2 BASTIDORES PARALELOS 6.35 CM CAL. 20 @ 41 CM. | MUROS INTERIORES DOBLES A 2 CARAS | MPD-3 | =0.0635+0.0635+0.0127+0.0127+0.0127 |  | M2 | 268.37 | N/A | 268.37 | =G64*I64 | PRECIO DE ANALISIS DE P.U. CON IVA 8% |
 `,
 
 "ACABADOS": `
 | DESCRIPCIÓN | CLAVE | ACABADO | MARCA | MODELO | DIMENSIONES | LINK Ficha tecnica | IMAGEN DE REFERENCIA | UNIDAD | CANTIDAD | P.U. IVA INCLUIDO | TOTAL | CONSIDERACIONES |
-| ACABADOS |  |  |  |  |  |  |  |  |  |  | =L5+L14+L29 |  |
+| ACABADOS |  |  |  |  |  |  |  |  |  |  | =L5+L14+L30 |  |
 | !! | ACABADOS EN PISOS | UBICACION |  |  |  |  |  |  |  |  | =SUM(L7:L13) |  |
 | PISO COMPUESTO DE PIEDRA (PCP) BODEN SMOOTH OAK. | VIVIENDAS | PISO SPC | BODEN | SMOOTH OAK | ESPESOR 6.5MM | https://www.harbo.mx/compra/piso-spc-boden-smooth-oak-5665 | #VALUE! | M2 | 5999.95 | OPCION 1 | BIOTRADE |  |
 |  |  |  |  |  |  |  |  |  |  | =(17*18)*1.16 | =J6*K7 | BIOTRADE COTIZADA CON ILSE SMITH |
@@ -410,25 +350,46 @@ const SHEETS = {
 |  |  |  |  |  |  |  |  |  |  | =((481538.74+103820)/(232.56)) | =J10*K11 |  |
 | PORCELANATO LEGHTON GRAY 60X120 | TERRAZAS | PORCELANATO | LEIGHTON | GRAY MATE | 60X120 CM | https://www.cesantoni.com.mx/es/productos/leighton/leighton-gray-mate-60x120 | #VALUE! | M2 | 290.94 | 400 | =J12*K12 |  |
 | PISO DE LVT ACABADO EN COLOR CEMENTO DE 5MM DE ESPESOR | GIMNASIO | LVT | LALUR | LAGL5-01-CE | ESPESOR 5MM | https://lalur.com.mx/lvt-5mm-c-116/lvt-5-mm-cemento-p-154.html | #VALUE! | M2 | 51.66 | =(1806.51/3.34) | =J13*K13 |  |
-| !! | ACABADOS EN MUROS |  |  |  |  |  |  |  |  |  | =SUM(L20:L24) |  |
-| SELLADOR |  | N/A | SHERWIN-WILLIAMS | PINTURA VINILICA Y ACRILICA | 16809.59 | https://www.casamyers.com.mx/amfile/file/download/file/5615/product/61511/ | #VALUE! | LT | =F15/30 | OPCION 1: | SHERWIN-WILLIAMS |  |
-|  |  |  |  |  |  |  |  |  |  | 120.16 | =J15*K16 |  |
+| !! | ACABADOS EN MUROS |  |  |  |  |  |  |  |  |  | =SUM(L15:L29) |  |
+| SELLADOR |  | N/A | SHERWIN-WILLIAMS | PINTURA VINILICA Y ACRILICA | 17350.5 | https://www.casamyers.com.mx/amfile/file/download/file/5615/product/61511/ | #VALUE! | LT | =F15/30 | OPCION 1: | SHERWIN-WILLIAMS |  |
+|  |  |  |  |  |  |  |  |  |  | =1800/19 | =J15*K16 |  |
 | SELLADOR PRACKTICO |  | N/A | COMEX | CHUCKRETE | 2391.27 | https://www.comex.com.mx/texturas-y-efectos/pracktico-multi-acabado-3-en-1-1-litro |  | LT | =F17/40 | OPCION 1: | COMEX |  |
 |  |  |  |  |  |  |  |  |  |  | 122.32 | =J17*K18 |  |
-| PINTURA ACRILICA |  | SIN ESPECIFICAR | SIN ESPECIFICAR | AREAS COMUNES Y EXTERIORES | 2982.39 |  |  | LT |  | OPCION 1: |  |  |
-| PINTURA VINILICA |  | SIN ESPECIFICAR | SIN ESPECIFICAR | EN INTERIORES DE DEPARTAMENTOS | 13827.2 |  |  | LT |  | OPCION 1: |  |  |
-| CHUKRETE |  |  | COMEX | FACHADAS / ESTACIONAMIENTO / TERRAZAS | 2391.27 | https://www.comex.com.mx/texturas-y-efectos/chukret-19-l?color=L-010 |  | LT | =F23/3 | OPCION 1: | COMEX |  |
-|  |  |  |  |  |  |  |  |  |  | 130.11 | =J23*K24 |  |
+| PINTURA ACRILICA |  | SIN ESPECIFICAR | SHERWIN-WILLIAMS | AREAS COMUNES Y EXTERIORES | 2982.39 | https://sherwin.com.mx/producto/kem-tone-acabado-perfecto/ | #VALUE! | LT | =(F19/12)*2.5 | OPCION 1: |  |  |
+|  |  |  |  |  |  |  |  |  |  | =3412/19 | =J19*K20 |  |
+| PINTURA VINILICA |  | SIN ESPECIFICAR | SHERWIN-WILLIAMS | EN INTERIORES DE DEPARTAMENTOS | 10021.68 | https://sherwin.com.mx/producto/kem-tone-acabado-perfecto/ | #VALUE! | LT | =(F21/12)*2.5 | OPCION 1: |  |  |
+|  |  |  |  |  |  |  |  |  |  | =3412/19 | =J21*K22 |  |
+| PINTURA ESMALTE |  | SIN ESPECIFICAR | SHERWIN-WILLIAMS | EN DEPARTAMENTOS INTERIORES | 4346.42 | https://sherwin.com.mx/producto/esmalte-acrilico-diluible-en-agua/ |  | LT | =(F23/13)*2.5 | 234.2 | =J23*K23 |  |
+| CHUKRETE |  | SIN ESPECIFICAR | COMEX | FACHADAS / ESTACIONAMIENTO / TERRAZAS | 2391.27 | https://www.comex.com.mx/texturas-y-efectos/chukret-19-l?color=L-010 |  | LT | =F24/3 | OPCION 1: | COMEX |  |
+|  |  |  |  |  |  |  |  |  |  | 130.11 | =J24*K25 |  |
 | PANEL WPC |  | SIN ESPECIFICAR | SIN ESPECIFICAR | PLANTA BAJA | 42.63 |  |  | LT |  | OPCION 1: |  |  |
+|  |  |  |  |  |  |  |  |  |  |  | =J27*K27 |  |
 | PAPEL TAPIZ |  | SIN ESPECIFICAR | SIN ESPECIFICAR | PLANTA BAJA | 40.94 |  |  | LT |  | OPCION 1: |  |  |
-| !! | ACABADOS EN PLAFONES |  |  |  |  |  |  |  |  |  | =SUM(L30:L33) |  |
-| SELLADOR |  | N/A | SHERWIN-WILLIAMS | PINTURA VINILICA Y ACRILICA | 2548.67 | https://www.casamyers.com.mx/amfile/file/download/file/5615/product/61511/ | #VALUE! | LT | =F30/30 | OPCION 1: | SHERWIN-WILLIAMS |  |
-|  |  |  |  |  |  |  |  |  |  | 120.16 | =J30*K31 |  |
-| PINTURA VINILICA |  | SIN ESPECIFICAR | SIN ESPECIFICAR | EN INTERIORES DE DEPARTAMENTOS | 1320.86 |  |  | LT |  | OPCION 1: |  |  |
-| !! | CUANTIFICACION DEL MODELO |  |  |  |  |  |  |  |  |  | =SUM(L37:L44) |  |
-| PASTA TIPO CONCRETO | MUROS LAMBRIN DONDE SE SIMULE CONCRETO | SIN ESPECIFICAR | CHUKRETE COMEX |  | 2230 |  |  | LT |  | OPCION 1: |  |  |
-| PINTURA LIMOSH | MUROS PASILLOS BODEGAS, AREAS GENERALES |  |  |  | 5555.81 |  |  | LT |  | OPCION 1: |  |  |
-| PINTURA LIMOSH | PLAFONES, PASILLOS, BODEGAS AREAS GENERALES |  |  |  |  |  |  | LT |  | OPCION 1: |  |  |
+|  |  |  |  |  |  |  |  |  |  |  | =J29*K29 |  |
+| !! | ACABADOS EN PLAFONES |  |  |  |  |  |  |  |  |  | =SUM(L31:L42) |  |
+| SELLADOR INTERIORES | EN AREA DE APLICACIÓN DE PINTURA VINILICA Y ACRILICA | OPCION INTERIORES | SHERWIN-WILLIAMS | SELLADOR 6 X1 ACRILICO | 2548.67 | https://www.casamyers.com.mx/amfile/file/download/file/5615/product/61511/ | #VALUE! | LT | =F31/30 | OPCION 1: | SHERWIN-WILLIAMS | RECOMENDADO PARA INTERIORES |
+|  |  |  |  |  |  |  |  |  |  | =1800/19 | =J31*K32 |  |
+| SELLADOR EXTERIORES | EN AREA DE APLICACIÓN DE PINTURA VINILICA Y ACRILICA | OPCION EXTERIORES | SHERWIN-WILLIAMS | SELLADOR SEALER 5 X1 ACRILICO | 2548.67 | https://sherwin.com.mx/producto/exterior-sealer-5x1/ | #VALUE! | LT | =F33/(7.82*5) | OPCION 1: | SHERWIN-WILLIAMS | RECOMENDADO PARA EXTERIORES |
+|  |  |  |  |  |  |  |  |  |  | =4400/19 | =J33*K34 |  |
+| PINTURA VINILICA | EN INTERIORES DE DEPARTAMENTOS | SUPER KEM-TONE BAJO VOC | SHERWIN-WILLIAMS | SUPER KEM-TONE BAJO VOC | 1320.86 | https://sherwin.com.mx/producto/super-kem-tone-bajo-voc/ | #VALUE! | LT | =(F35/18.5)*2.5 | OPCION 1: | SHERWIN WILLIAMS | 2.5 CAPAS |
+|  |  |  |  |  |  |  |  |  |  | =4165/19 | =K36*J35 |  |
+| PINTURA VINILICA | EN INTERIORES | OPCION KEM-TONE |  | KEM-TONE |  | https://sherwin.com.mx/producto/kem-tone-acabado-perfecto/ | #VALUE! | LT | =(F35/12)*2.5 | OPCION 1: | SHERWIN WILLIAMS | 2.5 CAPAS |
+|  |  |  |  |  |  |  |  |  |  | =3412/19 | =K38*J37 |  |
+| PINTURA VINILICA | EN INTERIORES | OPCION CLASSIC |  | CLASSIC |  | https://sherwin.com.mx/producto/pintura-vinil-acrilica-classic/ | #VALUE! | LT | =(F35/11.5)*2.5 | OPCION 1: | SHERWIN WILLIAMS | 2.5 CAPAS |
+|  |  |  |  |  |  |  |  |  |  | =2000/19 | =K40*J39 |  |
+| PINTURA VINILICA | EN INTERIORES | OPCION PROFESSIONAL |  | PROFESSIONAL |  | https://sherwin.com.mx/producto/pintura-vinil-acrilica-professional/ | #VALUE! | LT | =(F35/16)*2.5 | OPCION 1: | SHERWIN WILLIAMS | 2.5 CAPAS |
+|  |  |  |  |  |  |  |  |  |  | =3045/19 | =K42*J41 |  |
+| !! | CUANTIFICACION DEL MODELO | UBICACION USO |  |  |  |  |  |  |  |  | =SUM(L46:L57) |  |
+| PASTA TIPO CONCRETO | MUROS LAMBRIN DONDE SE SIMULE CONCRETO | TIPO CONCRETO | COMEX | CHIKRETE | 2230 | https://www.comex.com.mx/chukret-que-es-recubrimiento-acabado-acabados-tipo-chukum-cemento-pulido | #VALUE! | LT | =334*2.23*3 | OPCION 1: | COMEX | 3 CAPAS COLOR OSCURO |
+|  |  |  |  |  |  |  |  |  |  | =2472/19 | =K47*J46 |  |
+| PINTURA LIMOSH | MUROS PASILLOS BODEGAS, AREAS GENERALES | SUPER KEM-TONE BAJO VOC | SHERWIN-WILLIAMS | SUPER KEM-TONE BAJO VOC | 5555.81 | https://sherwin.com.mx/producto/super-kem-tone-bajo-voc/ | #VALUE! | LT | =(F48/18.5)*2.5 | OPCION 1: | SHERWIN WILLIAMS | 2.5 CAPAS |
+|  |  |  |  |  |  |  |  |  |  | =4165/19 | =K49*J48 |  |
+| PINTURA LIMOSH | MUROS PASILLOS BODEGAS, AREAS GENERALES | KEM-TONE |  | KEM-TONE |  | https://sherwin.com.mx/producto/kem-tone-acabado-perfecto/ | #VALUE! | LT | =(F48/12)*2.5 | OPCION 1: | SHERWIN WILLIAMS | 2.5 CAPAS |
+|  |  |  |  |  |  |  |  |  |  | =3412/19 | =K51*J50 |  |
+| PINTURA LIMOSH | MUROS PASILLOS BODEGAS, AREAS GENERALES | CLASSIC |  | CLASSIC |  | https://sherwin.com.mx/producto/pintura-vinil-acrilica-classic/ | #VALUE! | LT | =(F48/11.5)*2.5 | OPCION 1: | SHERWIN WILLIAMS | 2.5 CAPAS |
+|  |  |  |  |  |  |  |  |  |  | =2000/19 | =K53*J52 |  |
+| PINTURA LIMOSH | MUROS PASILLOS BODEGAS, AREAS GENERALES | PROFESSIONAL |  | PROFESSIONAL |  | https://sherwin.com.mx/producto/pintura-vinil-acrilica-professional/ | #VALUE! | LT | =(F48/16)*2.5 | OPCION 1: | SHERWIN WILLIAMS | 2.5 CAPAS |
+|  |  |  |  |  |  |  |  |  |  | =3045/19 | =K55*J54 |  |
 `,
 
 "LUMINARIAS": `
@@ -441,10 +402,10 @@ const SHEETS = {
 | 39113-0-CCT DRUM CCT LUMINARIA PARA SOBREPONER EN TECHO 12W. | LU-05 | LUMINARIA | ESTEVEZ | 39113-0-CCT |  | https://lirailuminacion.com/producto/estevez_39113-0-nw---drum_32664/ | #VALUE! | PZA | 66 | =281*1.16 | =J9*K9 |  |
 | 91-7913-00-00 ON BASIC 4.8 TIRA LED 24W 3000K IP65. | LU-06 | LUMINARIA | LEDC4 | LED 91-7913-00-00 / PERFIL 15733 / DRIVER 18141 | 24w | https://ledsc4.com/es/91-7909-00-00 | #VALUE! | PZA | 221 | =(34.6*22*1.36)+(250*2.5*1.16)+(125*1.16) | =J10*K10 | TIRA LED DE 5 MTS / PERFIL 5M EN TRAMOS DE 2M / 1 DRIVER |
 | DORIT LUMINARIO LED PARA EMPOTRAR EN TECHO 14W. | LU-07 | LUMINARIA | ESTEVEZ | ETC-0349-BLA | 14w | https://luzdeco.com/products/estevez-luminario-empotrado-led-17w-3000k-modelo-dorit-etc-0350-bla | #VALUE! | PZA | 12 | =660*1.16 | =J11*K11 |  |
-| ILUNANOLD20WWWB 4 LUMINARIAS DE LED CON MICA DIFUSA PARA EMPOTRAR EN NANOTRACK. | LU-08 | LUMINARIA | iLUMILEDS | LUMINARIA ILUNANOLD20WWWB / RIEL NANOTRK10151MB | 20w | https://ilumileds.com.mx/nanotrk10151mb/ | #VALUE! | PZA | =50+66+3+38+16+37+2+4+1+1 | =923+(143/3)+(466/1.44)+15 | =J12*K12 | Luminario lineal 59cm + Nano Track 1M + MICA + Kit 2 tapas |
-| ILUNANOLD20WWWB 2 LUMINARIAS DE LED CON MICA DIFUSA PARA EMPOTRAR EN NANOTRACK. | LU-09 | LUMINARIA | iLUMILEDS | LUMINARIA ILUNANOLD20WWWB / RIEL NANOTRK10151MB | 20w | https://ilumileds.com.mx/nanotrk10151mb/ | #VALUE! | PZA | =51+1+2 | =923+(143/3)+(466/1.44)+15 | =J13*K13 |  |
+| ILUNANOLD20WWWB 4 LUMINARIAS LED CON MICA DIFUSA PARA EMPOTRAR EN NANOTRACK. | LU-08 | LUMINARIA | iLUMILEDS | LUMINARIA ILUNANOLD20WWWB / RIEL NANOTRK10151MB | 20w | https://ilumileds.com.mx/nanotrk10151mb/ | #VALUE! | PZA | =50+66+3+38+16+37+2+4+1+1 | =923+(143/3)+(466/1.44)+15 | =J12*K12 | Luminario lineal 59cm + Nano Track 1M + MICA + Kit 2 tapas |
+| ILUNANOLD20WWWB 2 LUMINARIAS LED CON MICA DIFUSA PARA EMPOTRAR EN NANOTRACK. | LU-09 | LUMINARIA | iLUMILEDS | LUMINARIA ILUNANOLD20WWWB / RIEL NANOTRK10151MB | 20w | https://ilumileds.com.mx/nanotrk10151mb/ | #VALUE! | PZA | =51+1+2 | =923+(143/3)+(466/1.44)+15 | =J13*K13 |  |
 | 15591 ON BASIC 4.8 TIRA LED 3000K CRI80 24W + PERFIL 15732 + DRIVER 18131. | LU-11 | LUMINARIA | LEDC4 | LED 15591 / PERFIL 15732 / DRIVER 18131 | 4.8w | https://ledsc4.com/es/91-7913-00-00 | #VALUE! | PZA | 200 | =658+308+658 | =J14*K14 | COTIZADO CON ESTEVEZ |
-| ILUNANOLD20WWWB 3 LUMINARIAS DE LED CON MICA DIFUSA PARA EMPOTRAR EN NANOTRACK. | LU-15 | LUMINARIA | iLUMILEDS | LUMINARIA ILUNANOLD20WWWB / RIEL NANOTRK10151MB | 20w | https://ilumileds.com.mx/nanotrk10151mb/ | #VALUE! | PZA | =40+6+1 | =923+(143/3)+(466/1.44)+15 | =J15*K15 |  |
+| ILUNANOLD20WWWB 3 LUMINARIAS LED CON MICA DIFUSA PARA EMPOTRAR EN NANOTRACK. | LU-15 | LUMINARIA | iLUMILEDS | LUMINARIA ILUNANOLD20WWWB / RIEL NANOTRK10151MB | 20w | https://ilumileds.com.mx/nanotrk10151mb/ | #VALUE! | PZA | =40+6+1 | =923+(143/3)+(466/1.44)+15 | =J15*K15 |  |
 | LUMINARIO LED PARA EXTERIOR, PARA SOBREPONER EN MURO, ALUMINIO ANTRACITA 5.2W. | LU-17 | LUMINARIA | ESTEVEZ | ETX-0432-ANT | 5.2w | https://lirailuminacion.com/producto/estevez_etx-0432-ant---rex_39598/ | #VALUE! | PZA | 4 | 1160 | =J16*K16 |  |
 | LUMINARIO COMPUESTO DEW STICK SUSPENDIDO DECORATIVO LED 13W. | LU-20 | LUMINARIA | ESTEVEZ | 00-8565-05-M1U - DEW LUM COLGANTE VERTICAL 1MT LED | 13w |  |  | PZA | 1 | 767510.52 | =J17*K17 | COTIZADO CON ESTEVEZ |
 | 19565 PARKING LED LUMINARIO LED LINEAL ESTANCO 36W 600mm. | LU-28 | LUMINARIA | ESTEVEZ | 19565 | 36w | https://lirailuminacion.com/producto/estevez_19565-pir---parking-led_35744/ | #VALUE! | PZA | 24 | 1160 | =J18*K18 |  |
@@ -452,8 +413,8 @@ const SHEETS = {
 | 19500-2 PERISCOPE PROYECTOR DE EXTERIOR PARA SOBREPONER 6.5W. | LU-33 | LUMINARIA | ESTEVEZ | 19500-2 | 6.5w | https://dimeint.com/products/estevez-periscope-tecnopolimero-ip67-gx5-3-mr16-uplight-negro | #VALUE! | PZA | 19 | =176.08 | =J20*K20 |  |
 | CISNE LUM COLGANTE 400MM PC BLA 1x E-26 MAX 150W. | LU-34 | LUMINARIA | ESTEVEZ | 14118 | 150w | https://estevez.com.mx/products?lines_id=10&page=5 | #VALUE! | PZA | 15 | =247.63*22*1.36*1.16 | =J21*K21 |  |
 | DIRECT SNAKE TIRA LUMINOSA FLEXIBLE IP65 225W. | LU-35 | LUMINARIA | ESTEVEZ | 68-563060225WW-2 | 225w | https://grupodonpedro.com/products/tira-led-direct-snake-ip65-2700k-estevez | #VALUE! | PZA | 18 | 677 | =J22*K22 |  |
-| LUMINARIO SPOT EXIT 3000K CRI 80, 25.9W. | LU-36 | LUMINARIA | ESTEVEZ | 15360 | 25.9w | https://lirailuminacion.com/producto/leds-c4_15360-exit_39789/ | #VALUE! | PZA | 3 |  | =J23*K23 |  |
-| SIGN LUM EMP MURO ALU INY GRIS LED 2.3W. | LU-37 | LUMINARIA | ESTEVEZ | 10592 | 2.3w | https://estevez.com.mx/products?per_page=36&order=asc&page=19 | #VALUE! | PZA | 6 |  | =J24*K24 |  |
+| FLOAT-CCT SOBREPONER TECHO 30W CCT 36° 0-10V. | LU-36 | LUMINARIA | ESTEVEZ | 49630-2-CCT-010 | 30w | https://crail.lighting/producto/estevez_float-cct-sobreponer-techo-30w-cct-36-0-10v-color-negro_47937/ |  | PZA | 3 | 1799.25 | =J23*K23 |  |
+| PUNTO 2W IP65 LED LUZ CALIDA. | LU-37 | LUMINARIA | ESTEVEZ | 19254-0 | 6w | https://luzdeco.com/products/estevez-luminaria-led-de-cortesia-punto-2w-3000k-plata-empotrar-en-muro-modelo-19254-0 |  | PZA | 6 | 194.25 | =J24*K24 |  |
 | LUMINARIO LED UPLIGHT Ø90mm ACERO INOXIDABLE 5W. | LU-38 | LUMINARIA | ILLUX | PL-5207.A2710 | 5w | https://www.illux.com.mx/producto/luminario-led-para-empotrar-en-piso-pl-5207-a-illux/ | #VALUE! | PZA | 6 | 5112 | =J25*K25 |  |
 | DIRECT SNAKE TIRA LUMINOSA FLEXIBLE IP65 225W. | LU-40 | LUMINARIA | ESTEVEZ | 68-563060225WW-2 | 225w | https://grupodonpedro.com/products/tira-led-direct-snake-ip65-2700k-estevez | #VALUE! | PZA | 1 | 677 | =J26*K26 |  |
 `,
@@ -461,15 +422,15 @@ const SHEETS = {
 "CONTACTOS.APAGADORES": `
 | DESCRIPCIÓN | CLAVE | EQUIPO | MARCA | MODELO | CAPACIDAD | LINK Ficha tecnica | IMAGEN DE REFERENCIA | UNIDAD | CANTIDAD | P.U. IVA INCLUIDO | TOTAL | CONSIDERACIONES |
 | !! | CONTACTOS |  |  |  |  |  |  |  |  | =SUM(L5:L7) |  |
-| TOMA DE CORRIENTE DUPLEX 2P TIERRA CON CHASIS Y CON PLACA 15A BLANCO | 25424-60 | CONTACTO | SIMON/SERIE 25 | SIMON/SERIE 25 | 127V | https://www.simonelectric.com/es-mx/25424-60-toma-corriente-duplex-2p-t-seguridad-placa-15a-127v-blanco-simon-25-plus |  | PZA | 1316 | =48.11*1.16 | =K5*J5 | PRECIOS DE CORE |
-| P3M GFCI DUPLEX AUTOTEST TR GTO S26 | 2602425-068 | CONTACTO | SIMON/SERIE26 | SIMON/SERIE26 | 125V | https://www.simonelectric.com/es-mx/2601425-068-placa-c-interruptor-circuito-por-falla-tierra-gfci-autotest-c-placa-15a-125v-grafito-s26 |  | PZA | 123 | =416.75*1.16 | =K6*J6 | PRECIOS DE CORE |
-| CONTACTO DUPLEX GFCI / P3M GFCI DUPLEX AUTOTEST TR GTO S26 | EF-03 | CONTACTO | SIMON/SERIE26 | SIMON/SERIE26 |  | https://www.simonelectric.com/es-mx/2601425-068-placa-c-interruptor-circuito-por-falla-tierra-gfci-autotest-c-placa-15a-125v-grafito-s26 |  | PZA | 919 | =416.75*1.16 | =K7*J7 | PRECIOS DE CORE |
+| TOMA DE CORRIENTE DUPLEX 2P TIERRA CON CHASIS Y CON PLACA 15A BLANCO | 25424-60 | CONTACTO | SIMON/SERIE 25 | SIMON/SERIE 25 | 127V | https://www.simonelectric.com/es-mx/25424-60-toma-corriente-duplex-2p-t-seguridad-placa-15a-127v-blanco-simon-25-plus |  | PZA | 1316 | =48.11*1.16 | =K5*J5 | PRECIOS DE REFERENCIA CORE |
+| P3M GFCI DUPLEX AUTOTEST TR GTO S26 | 2602425-068 | CONTACTO | SIMON/SERIE26 | SIMON/SERIE26 | 125V | https://www.simonelectric.com/es-mx/2601425-068-placa-c-interruptor-circuito-por-falla-tierra-gfci-autotest-c-placa-15a-125v-grafito-s26 |  | PZA | 123 | =416.75*1.16 | =K6*J6 | PRECIOS DE REFERENCIA CORE |
+| CONTACTO DUPLEX GFCI / P3M GFCI DUPLEX AUTOTEST TR GTO S26 | EF-03 | CONTACTO | SIMON/SERIE26 | SIMON/SERIE26 |  | https://www.simonelectric.com/es-mx/2601425-068-placa-c-interruptor-circuito-por-falla-tierra-gfci-autotest-c-placa-15a-125v-grafito-s26 |  | PZA | 919 | =416.75*1.16 | =K7*J7 | PRECIOS DE REFERENCIA CORE |
 | !! | SWTCH |  |  |  |  |  |  |  |  | =SUM(L9:L13) |  |
-| APAGADOR SENCILLO / PLACA 1 MODULO C/CHASIS - GRAFITO/GRAFITO S26 | 2600611-038 |  | SIMON/SERIE26 | SIMON/SERIE26 |  | https://www.simonelectric.com/es-mx/2600611-038-placa-1-modulo-grafito-chasis-grafito-simon-26 |  | PZA | 557 | =36.85*1.16 | =K9*J9 | PRECIOS DE CORE |
-| APAGADOR SENCILLO / INTERRUPTOR 3 VIAS GRAFITO S26 | 2600201-038 |  | SIMON/SERIE26 | SIMON/SERIE26 |  | https://www.simonelectric.com/es-mx/2600201-038-interruptor-sencillo-3-vias-10a-127v-grafito-simon-26 |  | PZA | 557 | =48.61*1.16 | =K10*J10 | PRECIOS DE CORE |
-| APAGADOR 3 POLOS / INTERRUPTOR 3 VIAS GRAFITO S26 | 2600201-038 |  | SIMON/SERIE26 | SIMON/SERIE26 |  | https://www.simonelectric.com/es-mx/2600201-038-interruptor-sencillo-3-vias-10a-127v-grafito-simon-26 |  | PZA | =2*3 | =48.61*1.16 | =K11*J11 | PRECIOS DE CORE |
-| APAGADOR 3 POLOS / PLACA 3 MODULOS C/CHASIS - GRAFITO/GRAFITO S26 | 2600613-038 |  | SIMON/SERIE26 | SIMON/SERIE26 |  | https://www.simonelectric.com/es-mx/2600613-038-placa-3-modulos-grafito-chasis-gafito-simon-26 | #VALUE! | PZA | 2 | =36.85*1.16 | =K12*J12 | PRECIOS DE CORE |
-| !! | SENSORES ESTACIONAMIENTO |  |  |  | SIN ESPECIFICACION |  |  | PZA | 23 |  | =K13*J13 | PRECIOS DE CORE |
+| APAGADOR SENCILLO / PLACA 1 MODULO C/CHASIS - GRAFITO/GRAFITO S26 | 2600611-038 |  | SIMON/SERIE26 | SIMON/SERIE26 |  | https://www.simonelectric.com/es-mx/2600611-038-placa-1-modulo-grafito-chasis-grafito-simon-26 |  | PZA | 557 | =36.85*1.16 | =K9*J9 | PRECIOS DE REFERENCIA CORE |
+| APAGADOR SENCILLO / INTERRUPTOR 3 VIAS GRAFITO S26 | 2600201-038 |  | SIMON/SERIE26 | SIMON/SERIE26 |  | https://www.simonelectric.com/es-mx/2600201-038-interruptor-sencillo-3-vias-10a-127v-grafito-simon-26 |  | PZA | 557 | =48.61*1.16 | =K10*J10 | PRECIOS DE REFERENCIA CORE |
+| APAGADOR 3 POLOS / INTERRUPTOR 3 VIAS GRAFITO S26 | 2600201-038 |  | SIMON/SERIE26 | SIMON/SERIE26 |  | https://www.simonelectric.com/es-mx/2600201-038-interruptor-sencillo-3-vias-10a-127v-grafito-simon-26 |  | PZA | =2*3 | =48.61*1.16 | =K11*J11 | PRECIOS DE REFERENCIA CORE |
+| APAGADOR 3 POLOS / PLACA 3 MODULOS C/CHASIS - GRAFITO/GRAFITO S26 | 2600613-038 |  | SIMON/SERIE26 | SIMON/SERIE26 |  | https://www.simonelectric.com/es-mx/2600613-038-placa-3-modulos-grafito-chasis-gafito-simon-26 | #VALUE! | PZA | 2 | =36.85*1.16 | =K12*J12 | PRECIOS DE REFERENCIA CORE |
+| !! | SENSORES ESTACIONAMIENTO |  |  |  | SIN ESPECIFICACION |  |  | PZA | 23 |  | =K13*J13 | PRECIOS DE REFERENCIA CORE |
 `,
 
 "TIRAS LED DESGLOSE": `
@@ -478,7 +439,7 @@ const SHEETS = {
 | 15591 ON BASIC 4.8 TIRA LED 3000K CRI80 24W. | LU-11 | LUMINARIA | LEDC4 | LED 15591 | 24w | https://ledsc4.com/es/91-7913-00-00 | #VALUE! | ML | 1226.96 |  | =J5*K5 | SE ENVIO A COTIZAR |
 | 15732 LINEAL PERFIL DE ALUMINIO Y POLICARBONATO 17*9*2000mm. | LU-11 | DIFUSOR | ESTEVEZ | PERFIL 15732 | NA | https://www.outletestevez.com.mx/shop/15732-lineal-perfil-acc-sob-2000mm-alu-anod-mat-gris-int-lc4-26988 | #VALUE! | PZA | 613.48 | 511 | =J6*K6 | SE ENVIO A COTIZAR |
 | 91-7913-00-00 ON BASIC 4.8 TIRA LED 24W + FUENTE ALIMENTACIÓN. | LU-06 | LUMINARIA | LEDC4 | LED 91-7913-00-00 | 24w | https://ledsc4.com/es/91-7909-00-00 | #VALUE! | ML | 490.17 |  | =J7*K7 | SE ENVIO A COTIZAR |
-| 15733 LINEAL PERFIL DE ALUMINIO Y POLICARBONATO 18*16*2000mm. | LU-06 | DIFUSOR | ESTEVEZ | PERFIL 15733 | NA | https://www.outletestevez.com.mx/shop/15733-lineal-perfil-acc-sob-2000mm-alu-anod-mat-gris-int-lc4-26989 | #VALUE! | PZA | 245.085 | 778 | =J8*K8 | SE ENVIO A COTIZAR |
+| 15733 LINEAL PERFIL DE ALUMINIO Y POLICARBONATO 18*16*2000mm. | LU-06 | DIFUSOR | ilumileds | PERFIL 15733 | NA | https://ilumileds.com.mx/ilupa2403cokit/ | #VALUE! | PZA | 245.085 | 778 | =J8*K8 | SE ENVIO A COTIZAR |
 | DIRECT SNAKE TIRA LUMINOSA FLEXIBLE IP65 225W. | LU-35 | LUMINARIA | ESTEVEZ | 68-563060225WW-2 | 225w | https://grupodonpedro.com/products/tira-led-direct-snake-ip65-2700k-estevez | #VALUE! | ML | 108.91 |  | =J9*K9 | SE ENVIO A COTIZAR |
 `,
 
@@ -493,11 +454,11 @@ const SHEETS = {
 | DESCRIPCIÓN | CLAVE | MEDIDA | UBICACION | REFERENCIA | IMAGEN DE REFERENCIA | UNIDAD | CANTIDAD | P.U. IVA INCLUIDO | TOTAL | CONSIDERACIONES |
 | CANCELERIAS |  |  |  |  |  |  |  |  | =J5+J22+J47 |  |
 | !! | VENTANAS |  |  |  |  |  |  |  | =SUM(J7:J19) |  |
-| VENTANA DE 2320mm ANCHO x 3470mm. ALTO, 3 FIJOS, 1 PROYECTABLE, CON PERFILES DE ALUMINIO NEGRO Y CRISTAL  6 mm. | VG-03 | 3.47 M X 2.32 M |  | KBS V02 SERIE 50 NEGRO ELECTROSTATICO / 6MM CLARO TEMPLADO | #VALUE! | PZA | 7 | OPCION 1 | KBS |  |
+| VENTANA DE 2320mm ANCHO x 3470mm. ALTO, 3 FIJOS, 1 PROYECTABLE, PERFILES ALUMINIO NEGRO Y CRISTAL 6 mm. | VG-03 | 3.47 M X 2.32 M |  | KBS V02 SERIE 50 NEGRO ELECTROSTATICO / 6MM CLARO TEMPLADO | #VALUE! | PZA | 7 | OPCION 1 | KBS |  |
 |  |  |  | TIPO PARA NIVELES DE DOBLE ALTURA |  |  |  |  | 30056.91 | =I7*H6 |  |
-| VENTANA DE 1100mm ANCHO x 1760mm. ALTO, 1 PROYECTABLE + 5 FIJO. | VG-07 | 1.10 M X 1.76 M |  | KBS V04 SERIE 50 NEGRO ELECTROSTATICO / 6MM CLARO TEMPLADO | #VALUE! | PZA | 2 | OPCION 1 |  |  |
+| VENTANA DE 1100mm ANCHO x 1760mm. ALTO, 1 PROYECTABLE + 5 FIJO. | VG-07 | 1.10 M X 1.76 M |  | KBS V04 SERIE 50 NEGRO ELECTROSTATICO / 6MM CLARO TEMPLADO | #VALUE! | PZA | 2 | OPCION 1 | KBS |  |
 |  |  |  | LOCKOFF PARA NIVELES DE DOBLE ALTURA |  |  |  |  | 7054.86 | =I9*H8 |  |
-| VENTANA DE 2320mm ANCHO x 1760mm. ALTO, 1 FIJO, 1 PROYECTABLE. | VG-04 | 2.32 M X 1.76 M |  | KBS V05 SERIE 50 NEGRO ELECTROSTATICO / 6MM CLARO TEMPLADO | #VALUE! | PZA | 187 | OPCION 1 | KBS |  |
+| VENTANA DE 2320mm ANCHO x 1760mm. ALTO, 1 FIJOS, 1 PROYECTABLE. | VG-04 | 2.32 M X 1.76 M |  | KBS V05 SERIE 50 NEGRO ELECTROSTATICO / 6MM CLARO TEMPLADO | #VALUE! | PZA | 187 | OPCION 1 | KBS |  |
 |  |  |  | NIVELES TIPO |  |  |  |  | 16213.47 | =I11*H10 |  |
 | VENTANA DE 3870mm ANCHO x 1760mm. ALTO, 2 FIJOS, 1 PROYECTABLE. | VG-05 | 3.87 M X 1.76 M |  | KBS V07 SERIE 50 NEGRO ELECTROSTATICO / 6MM CLARO TEMPLADO | #VALUE! | PZA | 38 | OPCION 1 | KBS |  |
 |  |  |  | NIVELES TIPO LOCKOFF |  |  |  |  | 25843.15 | =I13*H12 |  |
@@ -535,32 +496,32 @@ const SHEETS = {
 | PUERTA ABATIBLE MARCO Y HOJA PERFILES ALUMINIO 2.40x1.20m. | PG-13 | 1.20 X 2.40 |  | PARAMETRICO NEODATA / PERFILES ALUMINIO 1.5" NEGRO + CRISTAL 6MM | #VALUE! | PZA | 1 | OPCION 1 | NEODATA | PARAMETRICO NEODATA |
 |  |  |  | HOJA DE LA PUERTA ACCESO A EDIFICIO PH |  |  |  |  | 12306.75 | =I46*H45 |  |
 | !! | LOUVERS Y REJAS |  |  |  |  |  |  |  | =SUM(J49:J73) |  |
-| LOUVER ALUMINIO 3.55x3.50m. | LG-01 | 3.55 X 3.50 |  | E-ARQ marco tubo 2x1" + celosia louver 3" | #VALUE! | PZA | 1 | OPCION 1 | E-ARQ | INCLUYE SUMINISTRO E INSTALACÓN |
-|  |  |  | LOVER CTO DESEMBOQUE CHUTE |  |  |  |  | 74896.618 | =I49*H48 |  |
-| LOUVER ALUMINIO 3.00x3.76m. | LG-02 | 3.00 X 3.76 |  | E-ARQ marco tubo 2x1" + celosia louver 3" | #VALUE! | PZA | 1 | OPCION 1 | E-ARQ | INCLUYE SUMINISTRO E INSTALACÓN |
-|  |  |  | CUARTO BASURA AUXILIAR |  |  |  |  | 72430.052 | =I51*H50 |  |
-| LOUVER ALUMINIO 2.00x1.72m. | LG-03 | 2.00 X 1.72 | LOUVERS PARA TRANSFORMADOR SERVICIOS | E-ARQ marco tubo 2x1" + celosia louver 3" |  | PZA | 1 | OPCION 1 | E-ARQ | INCLUYE SUMINISTRO E INSTALACÓN |
-|  |  |  |  |  | #VALUE! |  |  | 33899.1556 | =I53*H52 |  |
-| LOUVER ALUMINIO 2.00x2.27m. | LG-04 | 2.00 X 2.27 |  | E-ARQ marco tubo 2x1" + celosia louver 3" | #VALUE! | PZA | 1 | OPCION 1 | E-ARQ | INCLUYE SUMINISTRO E INSTALACÓN |
-|  |  |  |  |  |  |  |  | 39460.7292 | =I55*H54 |  |
-| LOUVER ALUMINIO 2.05x1.48m. | LG-05 | 2.05 X 1.48 | LOVERS DESMONTABLES PARA TRANSFORMADOR CEDIDO | E-ARQ marco tubo 2x1" + celosia louver 3" | #VALUE! | PZA | 1 | OPCION 1 | E-ARQ | INCLUYE SUMINISTRO E INSTALACÓN |
-|  |  |  |  |  |  |  |  | 32145.166 | =I57*H56 |  |
-| LOUVER ALUMINIO 2.00x1.70m. | LG-06 | 2.00 X 1.70 |  | E-ARQ marco tubo 2x1" + celosia louver 3" | #VALUE! | PZA | 1 | OPCION 1 | E-ARQ | INCLUYE SUMINISTRO E INSTALACÓN |
-|  |  |  |  |  |  |  |  | 33253.0356 | =I59*H58 |  |
-| LOUVER ALUMINIO 2.05x1.50m. | LG-07 | 2.05 X 1.50 |  | E-ARQ marco tubo 2x1" + celosia louver 3" | #VALUE! | PZA | 1 | OPCION 1 | E-ARQ | INCLUYE SUMINISTRO E INSTALACÓN |
-|  |  |  |  |  |  |  |  | 32269.402 | =I61*H60 |  |
-| LOUVER ALUMINIO 3.40x5.19m. | LG-08 | 3.40 X 5.19 | LOVERS CUARTO DE VENTILACION ESTACIONAMIENTO NIVEL 02 NORTE | E-ARQ marco tubo 2x1" + celosia louver 3" | #VALUE! | PZA | 1 | OPCION 1 | E-ARQ | INCLUYE SUMINISTRO E INSTALACÓN |
-|  |  |  |  |  |  |  |  | 96495.2612 | =I63*H62 |  |
-| LOUVER ALUMINIO 3.40x3.73m. | LG-09 | 3.40 X 3.73 |  | E-ARQ marco tubo 2x1" + celosia louver 3" | #VALUE! | PZA | 1 | OPCION 1 | E-ARQ | INCLUYE SUMINISTRO E INSTALACÓN |
-|  |  |  |  |  |  |  |  | 82947.1804 | =I65*H64 |  |
-| LOUVER ALUMINIO 3.40x5.19m. | LG-10 | 3.4 X 5.19 | LOVERS CUARTO DE VENTILACION ESTACIONAMIENTO NIVEL 02 SUR | E-ARQ marco tubo 2x1" + celosia louver 3" | #VALUE! | PZA | 1 | OPCION 1 | E-ARQ | INCLUYE SUMINISTRO E INSTALACÓN |
-|  |  |  |  |  |  |  |  | 96495.2612 | =I67*H66 |  |
-| LOUVER ALUMINIO 3.40x3.15m. | LG-11 | 3.4 X 3.15 |  | E-ARQ marco tubo 2x1" + celosia louver 3" | #VALUE! | PZA | 1 | OPCION 1 | E-ARQ | INCLUYE SUMINISTRO E INSTALACÓN |
-|  |  |  |  |  |  |  |  | 73923.61 | =I69*H68 |  |
-| LOUVER ALUMINIO 4.53x1.37m. | LG-12 | 4.53 X 1.37 | LOUVER PASILLO NORTE ACCESO A VIVIENDAS EN NIVEL 01 | E-ARQ marco tubo 2x1" + celosia louver 3" | #VALUE! | PZA | 1 | OPCION 1 | E-ARQ | INCLUYE SUMINISTRO E INSTALACÓN |
-|  |  |  |  |  |  |  |  | 48048.6268 | =I71*H70 |  |
-| LOUVER ALUMINIO 4.20x2.47m. | LG-13 | 4.20 X 2.47 | LOUVER SUR CUARTO CHUTE NIVEL 01 | E-ARQ marco tubo 2x1" + celosia louver 3" | #VALUE! | PZA | 1 | OPCION 1 | E-ARQ | INCLUYE SUMINISTRO E INSTALACÓN |
-|  |  |  |  |  |  |  |  | 65819.7456 | =I73*H72 |  |
+| LOUVER ALUMINIO 3.55x3.50m. | LG-01 | 3.55 X 3.50 |  | E-ARQ marco tubo 2x1" + celosia louver 3" | #VALUE! | PZA | 1 | OPCION 1 | E-ARQ | SUMINISTRO |
+|  |  |  | LOVER CTO DESEMBOQUE CHUTE |  |  |  |  | 51652.84 | =I49*H48 |  |
+| LOUVER ALUMINIO 3.00x3.76m. | LG-02 | 3.00 X 3.76 |  | E-ARQ marco tubo 2x1" + celosia louver 3" | #VALUE! | PZA | 1 | OPCION 1 | E-ARQ | SUMINISTRO |
+|  |  |  | CUARTO BASURA AUXILIAR |  |  |  |  | 49951.76 | =I51*H50 |  |
+| LOUVER ALUMINIO 2.00x1.72m. | LG-03 | 2.00 X 1.72 | LOUVERS PARA TRANSFORMADOR SERVICIOS | E-ARQ marco tubo 2x1" + celosia louver 3" |  | PZA | 1 | OPCION 1 | E-ARQ | SUMINISTRO |
+|  |  |  |  |  | #VALUE! |  |  | 23378.73 | =I53*H52 |  |
+| LOUVER ALUMINIO 2.00x2.27m. | LG-04 | 2.00 X 2.27 |  | E-ARQ marco tubo 2x1" + celosia louver 3" | #VALUE! | PZA | 1 | OPCION 1 | E-ARQ | SUMINISTRO |
+|  |  |  |  |  |  |  |  | 27214.3 | =I55*H54 |  |
+| LOUVER ALUMINIO 2.05x1.48m. | LG-05 | 2.05 X 1.48 | LOVERS DESMONTABLES PARA TRANSFORMADOR CEDIDO | E-ARQ marco tubo 2x1" + celosia louver 3" | #VALUE! | PZA | 1 | OPCION 1 | E-ARQ | SUMINISTRO |
+|  |  |  |  |  |  |  |  | 22169.08 | =I57*H56 |  |
+| LOUVER ALUMINIO 2.00x1.70m. | LG-06 | 2.00 X 1.70 |  | E-ARQ marco tubo 2x1" + celosia louver 3" | #VALUE! | PZA | 1 | OPCION 1 | E-ARQ | SUMINISTRO |
+|  |  |  |  |  |  |  |  | 22933.13 | =I59*H58 |  |
+| LOUVER ALUMINIO 2.05x1.50m. | LG-07 | 2.05 X 1.50 |  | E-ARQ marco tubo 2x1" + celosia louver 3" | #VALUE! | PZA | 1 | OPCION 1 | E-ARQ | SUMINISTRO |
+|  |  |  |  |  |  |  |  | 22254.76 | =I61*H60 |  |
+| LOUVER ALUMINIO 3.40x5.19m. | LG-08 | 3.40 X 5.19 | LOVERS CUARTO DE VENTILACION ESTACIONAMIENTO NIVEL 02 NORTE | E-ARQ marco tubo 2x1" + celosia louver 3" | #VALUE! | PZA | 1 | OPCION 1 | E-ARQ | SUMINISTRO |
+|  |  |  |  |  |  |  |  | 66548.46 | =I63*H62 |  |
+| LOUVER ALUMINIO 3.40x3.73m. | LG-09 | 3.40 X 3.73 |  | E-ARQ marco tubo 2x1" + celosia louver 3" | #VALUE! | PZA | 1 | OPCION 1 | E-ARQ | SUMINISTRO |
+|  |  |  |  |  |  |  |  | 57204.95 | =I65*H64 |  |
+| LOUVER ALUMINIO 3.40x5.19m. | LG-10 | 3.4 X 5.19 | LOVERS CUARTO DE VENTILACION ESTACIONAMIENTO NIVEL 02 SUR | E-ARQ marco tubo 2x1" + celosia louver 3" | #VALUE! | PZA | 1 | OPCION 1 | E-ARQ | SUMINISTRO |
+|  |  |  |  |  |  |  |  | 66548.46 | =I67*H66 |  |
+| LOUVER ALUMINIO 3.40x3.15m. | LG-11 | 3.4 X 3.15 |  | E-ARQ marco tubo 2x1" + celosia louver 3" | #VALUE! | PZA | 1 | OPCION 1 | E-ARQ | SUMINISTRO |
+|  |  |  |  |  |  |  |  | 50981.8 | =I69*H68 |  |
+| LOUVER ALUMINIO 4.53x1.37m. | LG-12 | 4.53 X 1.37 | LOUVER PASILLO NORTE ACCESO A VIVIENDAS EN NIVEL 01 | E-ARQ marco tubo 2x1" + celosia louver 3" | #VALUE! | PZA | 1 | OPCION 1 | E-ARQ | SUMINISTRO |
+|  |  |  |  |  |  |  |  | 33136.98 | =I71*H70 |  |
+| LOUVER ALUMINIO 4.20x2.47m. | LG-13 | 4.20 X 2.47 | LOUVER SUR CUARTO CHUTE NIVEL 01 | E-ARQ marco tubo 2x1" + celosia louver 3" | #VALUE! | PZA | 1 | OPCION 1 | E-ARQ | SUMINISTRO |
+|  |  |  |  |  |  |  |  | 45392.93 | =I73*H72 |  |
 `,
 
 "HERRERIAS": `
@@ -577,7 +538,7 @@ const SHEETS = {
 | !! | BARANDALES DE FACHADA |  |  |  |  |  |  |  | =SUM(J14) |  |
 | BARANDAL TIPO 4 Flotado marco solera 1/4"x2" + soleras verticales @15cm. 2.77 x 1.07 | N/A | SOLERA DE 1/4X2" | DIMENSIONES 2.77M x 1.07 M |  | #VALUE! | PZA | 89 | 4000 | =H14*I14 |  |
 | !! | PUERTAS DE EMEREGENCIA |  |  |  |  |  |  |  | =J18+J19+J21+J23 |  |
-| PUERTA DE EMERGENCIA 1.20 x 2.20 x 52mm, blanco RAL 9010, hoja AUSTURMEX EUROPEA-EI260 C5, barra antipánico TESA QUICK 1S, cierrapuertas TESA CT1800. Certificados 60min y C5. | AUSTURMEX / TESA | EUROPEA- EI260 C5 | HOJA: lamina galvanizada cal. 22, aislamiento ROCKWOOL 145 kg/m3, bisagras acero 3mm, cerradura CF. MARCO: acero cal. 16 + junta intumescente grafito. |  | #VALUE! | PZA | 40 | =I18+I21+I23 | =I16*H16 | SISTEMA COMPLETO: MARCO + PUERTA + BARRA ANTIPANICO + CIERRAPUERTAS |
+| PUERTA DE EMERGENCIA 1.20 x 2.20 x 52mm, blanco RAL 9010, hoja AUSTURMEX EUROPEA-EI260 C5, barra antipánico TESA QUICK 1S, cierrapuertas TESA CT1800. | AUSTURMEX / TESA | EUROPEA- EI260 C5 | HOJA: lamina galvanizada cal. 22, aislamiento ROCKWOOL 145 kg/m3, bisagras acero 3mm, cerradura CF. MARCO: acero cal. 16 + junta intumescente grafito. |  | #VALUE! | PZA | 40 | =I18+I21+I23 | =I16*H16 | SISTEMA COMPLETO: MARCO + PUERTA + BARRA ANTIPANICO + CIERRAPUERTAS |
 | PUERTA DE EMERGENCIA 1.20X2.20 | AUSTURMEX / TESA | EUROPEA- EI260 C5 |  | https://puertasasturmex.com/wp-content/uploads/2021/02/CONTRA-INCENDIO-Ei2-60.pdf |  |  |  | OPCION 1: | MARGHOS TEC (OBRA KAVI GDL ) |  |
 |  |  |  |  |  |  | PZA | 20 | 10500.1692 | =I18*H18 |  |
 | PUERTA DE EMERGENCIA 1.10X2.20 |  |  |  |  |  | PZA | 20 | 10500.1692 | =H19*I19 |  |
@@ -656,7 +617,7 @@ const SHEETS = {
 
 "CARPINTERIA MODULOS": `
 | DESCRIPCIÓN | CLAVE | MUEBLE | MARCA | MODELO | LINK Ficha tecnica | IMAGEN DE REFERENCIA | UNIDAD | CANTIDAD | P.U. IVA INCLUIDO | TOTAL | CONSIDERACIONES |
-| CARPINTERIAS |  |  |  |  |  |  |  |  |  | =K5+K11+K23+K38 |  |
+| !! | CARPINTERIAS |  |  |  |  |  |  |  |  | =K5+K11+K23+K38 |  |
 | !! | VANITY |  |  |  |  |  |  |  |  | =SUM(K6:K10) |  |
 | VANITY 80x55x75cm tablero melamínico 16mm. | W_VT-01 | VANITY PARA LAVABO |  |  |  | #VALUE! | PZA | 131 |  | =I6*J6 |  |
 | VANITY 120x55x75cm tablero melamínico 16mm. | W_VT-02 | VANITY PARA LAVABO |  |  |  | #VALUE! | PZA | 2 |  | =I7*J7 |  |
@@ -712,21 +673,21 @@ const SHEETS = {
 | DESCRIPCIÓN | CLAVE | ACCESORIO | MARCA | MODELO | LINK Ficha tecnica | IMAGEN DE REFERENCIA | UNIDAD | CANTIDAD | P.U. IVA INCLUIDO | TOTAL | OPCION 2 | TOTAL OP2 | OPCION 3 | TOTAL OP3 | CONSIDERACIONES |
 | ACCESORIOS DE COCINAS |  |  |  |  |  |  |  |  | =K5+K24 |  | =M5+M24 |  | =O5+O24 |  |
 | !! | MONOMANDOS DE COCINAS |  |  |  |  |  |  |  |  | =SUM(K7) |  | =SUM(M7) |  | =SUM(O7) |  |
-| MONOMANDO PARA COCINA NEGRO | PF-66 | MONOMANDO PARA COCINA | HELVEX | E-310-eb | https://helvex.com/mx/e-310-eb.html | #VALUE! | PZA | 214 | OPCION 1 | RECUBRE | OPCION 2 | EL SURTIDOR | OPCION 3 | KURODA |  |
+| MONOMANDO PARA COCINA NEGRO | PF-66 | MONOMANDO PARA COCINA | HELVEX | E-310-eb | https://helvex.com/mx/e-310-eb.html | #VALUE! | PZA | 131 | OPCION 1 | RECUBRE | OPCION 2 | EL SURTIDOR | OPCION 3 | KURODA |  |
 |  |  |  |  |  |  |  |  |  | 4814.6 | =J7*I6 | 5535.6 | =L7*I6 | 5890 | =N7*I6 |  |
 | !! | TARJAS DE COCINAS |  |  |  |  |  |  |  |  | =SUM(K10) |  | =SUM(L10) |  | =SUM(O10) |  |
-| TARJAS DE COCINAS | EP-03 | TARJA DE COCINA | TEKA | Square 50.40 TG B | https://www.teka.com/es-mx/producto/square-50-40-tg-b_115230020/ | #VALUE! | PZA | 214 | OPCION 1 | EL SURTIDOR | OPCION 2 |  | OPCION 3 |  |  |
+| TARJAS DE COCINAS | EP-03 | TARJA DE COCINA | TEKA | Square 50.40 TG B | https://www.teka.com/es-mx/producto/square-50-40-tg-b_115230020/ | #VALUE! | PZA | 131 | OPCION 1 | EL SURTIDOR | OPCION 2 |  | OPCION 3 |  |  |
 |  |  |  |  |  |  |  |  |  | 7046.93 | =I9*J10 |  | =I9*L10 |  |  |  |
 | !! | EQUIPOS COCINAS |  |  |  |  |  |  |  |  | =SUM(K13) |  | =SUM(L13) |  | =SUM(O13) |  |
-| PARRILLA ELÉCTRICA | EP-02 | Parrilla vitrocerámica de 4 zonas | TEKA | TBC 64000 XFL BK | https://www.teka.com/es-mx/producto/placa-vitroceramica-de-4-zonas-de-60-cm_112550009/ | #VALUE! | PZA | 201 | OPCION 1 | COPPEL | OPCION 2 |  | OPCION 3 |  |  |
+| PARRILLA ELÉCTRICA | EP-02 | Parrilla vitrocerámica de 4 zonas | TEKA | TBC 64000 XFL BK | https://www.teka.com/es-mx/producto/placa-vitroceramica-de-4-zonas-de-60-cm_112550009/ | #VALUE! | PZA | 93 | OPCION 1 | COPPEL | OPCION 2 |  | OPCION 3 |  |  |
 |  |  |  |  |  |  |  |  |  | 20299 | =I12*J13 |  | =I12*L13 |  |  |  |
-| HORNO ELÉCTRICO | EP-01 | HORNO ELÉCTRICO | TEKA | HLF 82-G1 G BM | https://www.teka.com/es-mx/producto/hlf-82-g1-g-bm_111100001/ | #VALUE! | PZA | 201 | OPCION 1 | PALACIO DE HIERRO | OPCION 2 | LIVERPOOL | OPCION 3 |  |  |
+| HORNO ELÉCTRICO | EP-01 | HORNO ELÉCTRICO | TEKA | HLF 82-G1 G BM | https://www.teka.com/es-mx/producto/hlf-82-g1-g-bm_111100001/ | #VALUE! | PZA | 93 | OPCION 1 | PALACIO DE HIERRO | OPCION 2 | LIVERPOOL | OPCION 3 |  |  |
 |  |  |  |  |  |  |  |  |  | 49999 | =I14*J15 | 45899 | =I14*L15 |  |  |  |
-| MICROHOOD | EP-05 | HORNO DE MICROONDAS CON CAMPANA INTEGRADA | TEKA | MLH 845 SS-MX | https://www.teka.com/es-mx/producto/mlh-845-ss-mx_111910000/ | #VALUE! | PZA | 201 | OPCION 1 | KURODA | OPCION 2 | LIVERPOOL | OPCION 3 | COSTCO |  |
+| MICROHOOD | EP-05 | HORNO DE MICROONDAS CON CAMPANA INTEGRADA | TEKA | MLH 845 SS-MX | https://www.teka.com/es-mx/producto/mlh-845-ss-mx_111910000/ | #VALUE! | PZA | 93 | OPCION 1 | KURODA | OPCION 2 | LIVERPOOL | OPCION 3 | COSTCO |  |
 |  |  |  |  |  |  |  |  |  | 11279 | =I16*J17 | 14699 | =I16*L17 | 11499 | =I16*N17 |  |
 | MICROONDAS | EP-09 | MICROONDAS DE LOCKOFF | TEKA | MWG 11X | https://www.teka.com/es-mx/producto/mwg-11x_40590830/ | #VALUE! | PZA | 38 | OPCION 1 | COPPEL | OPCION 2 | HOME DEPOT | OPCION 3 | LIVERPOOL |  |
 |  |  |  |  |  |  |  |  |  | 4809 | =I18*J19 | 3799 | =I18*L19 | 4799 | =I18*N19 |  |
-| REFRIGERADOR | - | REFRIGERADOR PANELABLE | IKEA | SUPERKALL | https://www.ikea.com/us/en/p/superkall-built-in-panel-ready-refrigerator-panel-ready-10462156/ | #VALUE! | PZA | 201 | OPCION 1 | IKEA | OPCION 2 |  | OPCION 3 |  |  |
+| REFRIGERADOR | - | REFRIGERADOR PANELABLE | IKEA | SUPERKALL | https://www.ikea.com/us/en/p/superkall-built-in-panel-ready-refrigerator-panel-ready-10462156/ | #VALUE! | PZA | 93 | OPCION 1 | IKEA | OPCION 2 |  | OPCION 3 |  |  |
 |  |  |  |  |  |  |  |  |  | 1599 | =I20*J21 |  | =I20*L21 |  | =I20*N21 |  |
 | FRIGOBAR | - | FRIGOBAR LOCKOFF | IKEA | LAGAN | https://www.ikea.com/us/en/p/lagan-fridge-with-freezer-compartment-compact-white-50490119/ | #VALUE! | PZA | 38 | OPCION 1 |  | OPCION 2 |  | OPCION 3 |  |  |
 |  |  |  |  |  |  |  |  |  | 299 | =I22*J23 |  | =I22*L23 |  | =I22*N23 |  |
@@ -747,19 +708,19 @@ const SHEETS = {
 | !! | DUCHAS PREFABRICADAS |  |  |  |  |  |  |  |  |  | =M10+M12+M14+M16+M18+M20 |  | =O10+O12+O14+O16+O18+O20 |  | =Q10+Q12+Q14+Q16+Q18+Q20 |  |  |
 | REGADERA PREFABRICADA (90x120) — PLATO + REGADERA + MONOMANDO. |  | PF-07 | REGADERA PREFABRICADA |  | 90 X 120 |  |  | #VALUE! | PZA | 100 | OPCION 1: | PRECIO CHINA/EHUD | OPCION 2: | AZUMESTORE CDMX | OPCION 3: | BEDON |  |
 |  | SALIDAS, LADO DERECHO |  |  |  |  |  |  |  |  |  | =900*18.5 | =K9*L10 | =(16650*1.16)+16990 | =N10*K9 | =(25870*1.16)+16990 | =P10*K9 |  |  |
-| REGADERA PREFABRICADA 95x140. | SALIDAS, LADO DERECHO | PF-02 |  |  | 95X140 |  |  |  | PZA | 1 | OPCION 1: |  | OPCION 2: |  | OPCION 3: |  |  |  |
+| REGADERA PREFABRICADA 95x140. | SALIDAS, LADO DERECHO | PF-02 |  |  | 95X140 |  |  |  | PZA | 1 | OPCION 1: | PRECIO CHINA/EHUD | OPCION 2: |  | OPCION 3: |  |  |  |
 |  |  |  |  |  |  |  |  |  |  |  | =900*18.5 | =K11*L12 |  | =N12*K11 |  |  |  |  |
-| REGADERA PREFABRICADA (95x145) — PLATO + REGADERA + MONOMANDO. | SALIDAS, LADO DERECHO | PF-12 |  |  | 95 X 145 |  |  |  | PZA | 2 | OPCION 1: |  | OPCION 2: |  | OPCION 3: |  |  |  |
+| REGADERA PREFABRICADA (95x145) — PLATO + REGADERA + MONOMANDO. | SALIDAS, LADO DERECHO | PF-12 |  |  | 95 X 145 |  |  |  | PZA | 2 | OPCION 1: | PRECIO CHINA/EHUD | OPCION 2: |  | OPCION 3: |  |  |  |
 |  |  |  |  |  |  |  |  |  |  |  | =900*18.5 | =K13*L14 |  | =N14*K13 |  |  |  |  |
-| REGADERA PREFABRICADA (90x120) LADO IZQUIERDO. | SALIDAS, LADO IZQUIERDO | PF-07 |  |  | 90 X 120 |  |  |  | PZA | 27 | OPCION 1: |  | OPCION 2: | AZUMESTORE CDMX | OPCION 3: |  |  |  |
+| REGADERA PREFABRICADA (90x120) LADO IZQUIERDO. | SALIDAS, LADO IZQUIERDO | PF-07 |  |  | 90 X 120 |  |  |  | PZA | 27 | OPCION 1: | PRECIO CHINA/EHUD | OPCION 2: | AZUMESTORE CDMX | OPCION 3: |  |  |  |
 |  |  |  |  |  |  |  |  |  |  |  | =900*18.5 | =K15*L16 | =(16650*1.16)+16990 | =N16*K15 |  |  |  |  |
-| REGADERA PREFABRICADA (95x150) — PLATO + REGADERA + MONOMANDO. | SALIDAS, LADO IZQUIERDO | PF-09 |  |  | 95 X 150 |  |  |  | PZA | 2 | OPCION 1: |  | OPCION 2: |  | OPCION 3: |  |  |  |
+| REGADERA PREFABRICADA (95x150) — PLATO + REGADERA + MONOMANDO. | SALIDAS, LADO IZQUIERDO | PF-09 |  |  | 95 X 150 |  |  |  | PZA | 2 | OPCION 1: | PRECIO CHINA/EHUD | OPCION 2: |  | OPCION 3: |  |  |  |
 |  |  |  |  |  |  |  |  |  |  |  | =900*18.5 | =K17*L18 |  | =N18*K17 |  |  |  |  |
-| REGADERA PREFABRICADA (100x100) — PLATO + REGADERA + MONOMANDO. | SALIDAS, LADO IZQUIERDO | PF-11 |  |  | 100 X 100 |  |  |  | PZA | 2 | OPCION 1: |  | OPCION 2: | AZUMESTORE CDMX | OPCION 3: | DOSIMAC EDO. MEX |  |  |
+| REGADERA PREFABRICADA (100x100) — PLATO + REGADERA + MONOMANDO. | SALIDAS, LADO IZQUIERDO | PF-11 |  |  | 100 X 100 |  |  |  | PZA | 2 | OPCION 1: | PRECIO CHINA/EHUD | OPCION 2: | AZUMESTORE CDMX | OPCION 3: | DOSIMAC EDO. MEX |  |  |
 |  |  |  |  |  |  |  |  |  |  |  | =900*18.5 | =K19*L20 | =(12649*1.16)+16990 | =N20*K19 | =(19000*1.16)+16990 | =P20*K19 |  |  |
 | !! | LAVABOS |  |  |  |  |  |  |  |  |  | =M23+M25+M27+M29+M31+M33+M35+M37 |  | =O23+O25+O27+O29+O31+O33+O35+O37 |  |  |  |  |
 | LAVABO CERAMICO SUSPENDIDO 44.5 x 22 cm. MCA BRAGA. |  | PF-03 | LAVABO SUSPENDIDO | BRAGA | Soporte Cerámico o Suspendido Rectangular 44 cm | flujo 4,5 cm / 44.5 X 22 CM | https://belagriferia.com.py/producto/lavabo-de-bano-soporte-ceramico-o-suspendido-rectangular-44-cm-blanco-braga/ | #VALUE! | PZA | 1 | OPCION 1: | BELA (PARAGUAY ) | OPCION 2: | AMAZON |  |  |  |  |
-|  | LOBBY |  |  |  |  |  |  |  |  |  | =3974*1.3*1.16 | =K22*L23 | 5537.07 | =N23*K22 |  |  | OPCIN 1: DE PARAGUAY |  |
+|  | LOBBY |  |  |  |  |  |  |  |  |  | =3974*1.35*1.16 | =K22*L23 | 5537.07 | =N23*K22 |  |  | OPCIN 1: DE PARAGUAY |  |
 | TRAMPA FLEXIBLE LAVABO LATON 25 x 15.5 x 4.1 cm. MCA COFLEX. |  | PF-04 | CESPOL | COFLEX | P-b9056 |  | https://www.coflex.com.mx/productos/archivos/ft_P-B9056.pdf | #VALUE! | PZA | 137 | OPCION 1: | KURODA | OPCION 2: | THE HOME DEPOT |  |  |  |  |
 |  | CESPOL PARA TODOS LOS VANITY |  |  |  |  |  |  |  |  |  | 343.12 | =K24*L25 | 389 | =N25*K24 |  |  |  |  |
 | LAVABO 0.80 x 0.55m sobre VANITY. |  | PF-05 | LAVABO DE EMPOTRAR | ESATTO | OC-078 |  | https://esatto.com.mx/product/lavabo-ceramico-empotrar-oc-078/ | #VALUE! | PZA | 131 | OPCION 1: | ESATTO | OPCION 2: | SANBORNS |  |  |  |  |
@@ -774,78 +735,73 @@ const SHEETS = {
 |  | PH AMENIDADES |  |  |  |  |  |  |  |  |  |  | =K34*L35 |  | =N35*K34 |  |  | PEDIR A BLAIR MODELO Y MARCA |  |
 | LAVABO CERAMICO SOBREPONER OC-030 MCA ESATTO. |  | PF-16 | LAVABO DE SOBREPONER | ESATTO | OC-030 | 45 x 25 x 12 cm | https://esatto.com.mx/product/lavabo-ceramico-sobreponer-oc-030/ | #VALUE! | PZA | 1 | OPCION 1: | ESATTO | OPCION 2: | AMAZON |  |  |  |  |
 |  | LABABO SANITARIO AMENIDADES |  |  |  |  |  |  |  |  |  | =1508*1.16 | =K36*L37 | 1758 | =N37*K36 |  |  |  |  |
-| Regadera con monomando LIQUID Negro Mate. |  |  |  | LIQUID |  |  | https://www.sodimac.com.mx/sodimac-mx/product/738964/Regadera-con-monomando-LIQUID-Negro-Mate/738964 | #VALUE! | PZA | 134 |  |  |  |  |  |  |  | PEDIR A BLAIR MODELO |  |
+| Regadera con monomando LIQUID Negro Mate. | CABINAS DE DUCHA | LQ4105551 | REGADERA CON MONOMANDO | CORONA | SERIE LIQUID NODELO LQ4105551 | 24.120CM DIAMETRO X 8 CM ALTO | https://www.sodimac.com.mx/sodimac-mx/product/738964/Regadera-con-monomando-LIQUID-Negro-Mate/738964 | #VALUE! | PZA | 134 | OPCION 1: | SODIMAC | OPCION 2: |  |  |  |  |  |
+|  |  |  |  |  |  |  |  |  |  |  | =4999+(30000/134) | =K38*L39 |  |  |  |  |  |  |
 `,
 
 "ACCESORIOS DE BAÑO": `
 | DESCRIPCIÓN | UBICACION / USO / REFERENCIA | MARCA | MODELO | LINK Ficha tecnica | IMAGEN DE REFERENCIA | UNIDAD | CANTIDAD | P.U. IVA INCLUIDO | TOTAL | CONSIDERACIONES |
-| ACCESORIOS DE BAÑO |  |  |  |  |  |  |  |  | =J5+J12+J19 |  |
-| !! | MONOMANDOS DE BAÑOS |  |  |  |  |  |  |  | =J7+J9+J11 |  |
-| MONOMANDO PARA REGADERA |  |  |  |  | PZA | 140 | OPCION 1 |  |  |  |
-|  | ESTA EN LA PESTAÑA DE MUEBLES DE BAÑO |  |  |  |  |  |  | =H6*I7 |  | PEDIR A BLAIR MODELO Y MARCA |
-| PLATO DE DUCHA |  |  |  |  | PZA | 134 | OPCION 1 |  |  |  |
-|  | ESTA EN LA PESTAÑA DE MUEBLES DE BAÑO |  |  |  |  |  |  | =H8*I9 |  | PEDIR A BLAIR MODELO Y MARCA |
-| MONOMANDO REGADERA PREFABRICADA |  |  |  |  | PZA | 2 | OPCION 1 |  |  |  |
-|  | ESTA EN LA PESTAÑA DE MUEBLES DE BAÑO |  |  |  |  |  |  | =H10*I11 |  | PEDIR A BLAIR MODELO Y MARCA |
-| !! | ACCESORIOS VARIOS BAÑOS DE DEPARTAMENTOS |  |  |  |  |  |  | =J14+J27+#REF!+#REF!+J16+J21+J23+J18+J25+#REF! |  |  |
-| COLADERAS BAÑOS TIPO Y PHS. | BAÑOS TIPO Y PHS | HELVEX |  | https://www.riluan.com.mx/product-page/22v-chli-coladera-corta-vertical-cuadrada | #VALUE! | PZA | 101 | OPCION 1 | KURODA |  |
-|  |  |  |  |  |  |  | 1542.75 | =H13*I14 |  |  |
-| TOALLERO INCLUIDO EN VANITY. | INCLUIDO EN VANITY | MEDIMEX |  | https://lavabosconestilo.com/products/toallero-para-mueble-de-bano-de-medimex | #VALUE! | PZA | 137 | OPCION 1 | LAVABOS CON ESTILO / ESPAÑA |  |
-|  |  |  |  |  |  |  | 460.97 | =H15*I16 | OPCION 1: DE ESPAÑA |  |
-| PORTARROLLOS SANITARIOS AMENIDADES Y LOBBY. | SANITARIOS AMENIDADES Y LOBBY | KOHLER |  | https://la.kohler.com/es/product-detail/23528?skuid=K-23528-BL | #VALUE! | PZA | 121 | OPCION 1 | GRUPO SAR |  |
-|  |  |  |  |  |  |  | 1583.05 | =H17*I18 |  |  |
-| !! | ACCESORIOS VARIOS BAÑOS DE AREAS COMUNES |  |  |  |  |  |  | =#REF!+#REF!+#REF!+J31+#REF!+J33+#REF!+#REF! |  |  |
-| PORTATOALLAS MULTIPLE. | SANITARIOS AMENIDADES Y LOBBY | TORK |  | https://www.amazon.com.mx/Tork-Xpress-553028-multiplegado-dispensaci%C3%B3n/dp/B0DFXBJDWM/ | #VALUE! | PZA | 2 | OPCION 1 | AMAZON |  |
-|  |  |  |  |  |  |  | 699 | =H20*I21 |  |  |
-| GANCHO. | SANITARIOS AMENIDADES Y LOBBY | HELVEX |  | https://www.surtidor.com/gancho-sencillo-helvex-spiga-spg-106-eb-ebano.html | #VALUE! | PZA | 2 | OPCION 1 | KURODA |  |
-|  |  |  |  |  |  |  | 397.51 | =H22*I23 |  |  |
-| DISPENSADOR DE PAPEL HIGIENICO. | SANITARIOS AMENIDADES Y LOBBY | TORK |  | https://www.amazon.com.mx/Tork-OptiServe-Dispensador-higi%C3%A9nico-dispensador/dp/B0DFXBQV5G | #VALUE! | PZA | 2 | OPCION 1 | AMAZON |  |
-|  |  |  |  |  |  |  | 423.94 | =H24*I25 |  |  |
+| ACCESORIOS DE BAÑO |  |  |  |  |  |  |  |  | =J5+J12 |  |
+| !! | ACCESORIOS VARIOS BAÑOS DE DEPARTAMENTOS |  |  |  |  |  |  |  | =J7+J9+J11 |  |
+| COLADERAS BAÑOS TIPO Y PHS. | BAÑOS TIPO Y PHS | HELVEX | 22V-CHLI | https://www.riluan.com.mx/product-page/22v-chli-coladera-corta-vertical-cuadrada | #VALUE! | PZA | 101 | OPCION 1 | KURODA |  |
+|  |  |  |  |  |  |  |  | 1542.75 | =H6*I7 |  |
+| TOALLERO. | INCLUIDO EN VANITY | Qflushor | KTR-23-BK | https://www.amazon.com.mx/Qflushor-Soporte-toallas-inoxidable-unidades/dp/B0BVMHRNS3 | #VALUE! | PZA | 137 | OPCION 1 | AMAZON |  |
+|  |  |  |  |  |  |  |  | 122 | =H8*I9 |  |
+| PORTARROLLOS. | SANITARIOS AMENIDADES Y LOBBY | KOHLER | Parallel / K-23528-BL | https://la.kohler.com/es/product-detail/23528?skuid=K-23528-BL | #VALUE! | PZA | 121 | OPCION 1 | GRUPO SAR |  |
+|  |  |  |  |  |  |  |  | 1583.05 | =H10*I11 |  |
+| !! | ACCESORIOS VARIOS BAÑOS DE AREAS COMUNES |  |  |  |  |  |  |  | =J14+J16+J18+J20+J22+J24+J26 |  |
+| PORTATOALLAS MULTIPLE. | SANITARIOS AMENIDADES Y LOBBY | TORK | Tork Xpress 553028 | https://www.amazon.com.mx/Tork-Xpress-553028-multiplegado-dispensaci%C3%B3n/dp/B0DFXBJDWM/ | #VALUE! | PZA | 2 | OPCION 1 | AMAZON |  |
+|  |  |  |  |  |  |  |  | 699 | =H13*I14 |  |
+| GANCHO. | SANITARIOS AMENIDADES Y LOBBY | HELVEX | Spiga Spg-106-eb Ébano | https://www.surtidor.com/gancho-sencillo-helvex-spiga-spg-106-eb-ebano.html | #VALUE! | PZA | 2 | OPCION 1 | KURODA |  |
+|  |  |  |  |  |  |  |  | 397.51 | =H15*I16 |  |
+| DISPENSADOR DE PAPEL HIGIENICO. | SANITARIOS AMENIDADES Y LOBBY | TORK | Tork OptiServe (473528) | https://www.amazon.com.mx/Tork-OptiServe-Dispensador-higi%C3%A9nico-dispensador/dp/B0DFXBQV5G | #VALUE! | PZA | 2 | OPCION 1 | AMAZON |  |
+|  |  |  |  |  |  |  |  | 423.94 | =H17*I18 |  |
 | COLADERAS LINEALES. | TERRAZAS PHS Y AMENIDADES | ACO | Type 470/471 Galvanized Heel Resistant Brickslot 100 | https://craftcommx-my.sharepoint.com/:f:/g/personal/habitacional_craft_com_mx/IgC3I2xP6fFQSoYxgT8WJuQ-Ae0mJJ8ENU1pw-SyfkukG9o?e=alIzoL | #VALUE! | ML | 45 | OPCION 1 | QUIMA INTERNACIONAL MTY |  |
-|  |  |  |  |  |  |  | 3031.98 | =H26*I27 |  |  |
+|  |  |  |  |  |  |  |  | 3031.98 | =H19*I20 |  |
 | COLADERAS DE ESTACIONAMIENTO. | NIVELES DE ESTACIONAMIENTO | HELVEX | 2714 | https://www.surtidor.com/coladera-rejilla-helvex-2714-negro-09101402170.html | #VALUE! | PZA | 60 | OPCION 1 | KURODA |  |
-|  |  |  |  |  |  |  | 4429.81 | =H28*I29 |  |  |
+|  |  |  |  |  |  |  |  | 4429.81 | =H21*I22 |  |
 | BOTES DE BASURA. | SANITARIOS AMENIDADES Y LOBBY |  |  |  |  | PZA | 2 | OPCION 1 |  |  |
-|  |  |  |  |  |  |  |  | =H30*I31 |  |  |
+|  |  |  |  |  |  |  |  |  | =H23*I24 |  |
 | DISPENSADOR DE JABON LIQUIDO. | SANITARIOS AMENIDADES Y LOBBY |  |  |  |  | PZA | 2 | OPCION 1 |  |  |
-|  |  |  |  |  |  |  |  | =H32*I33 |  |  |
+|  |  |  |  |  |  |  |  |  | =H25*I26 |  |
 `,
 
 "MOBILIARIO": `
 |  | UBICACIÓN |  | DESCRIPCIÓN | ACABADO/REFERENCIA | MARCA | MODELO | IMAGEN DE REFERENCIA |  | LINK REFERENCIA | UNIDAD | CANTIDAD | P.U. IVA INCLUIDO | TOTAL | CONSIDERACIONES |
-|  |  |  | MOBILIARIO |  |  |  |  |  |  |  |  |  | =N4+N15+N20+N22+N29 |  |
-| !! | PB - LOBBY - RECEPCION |  |  |  |  |  |  |  |  |  |  |  | =SUM(N5:N14) |  |
-|  | PLANTA BAJA | LOBBY-RECEPCION | SILLA CON REPOSABRAZOS 0.61 x 0.55mts. | SILLON 4 patas madera haya acabado natural o nogal. | MOBICA | MARIOLA FULL |  |  |  | PZA | 5 | 9508.8 | =L5*M5 | COTIZADO |
-|  | PLANTA BAJA | LOBBY-RECEPCION | MESA CUADRADA 0.70 x 0.70mts. | Base aluminio 4 puntas, cubierta acero pintado. | MOBICA | MESA CUADRADA ARK R-H74 |  |  |  | PZA | 5 | 10305.75 | =L6*M6 | COTIZADO |
-|  | PLANTA BAJA | LOBBY-RECEPCION | RIÑONERA 35x60. | Algodón chevron/blanco. | MOBICA | RIÑONERA ARCILLA RITMO |  |  |  | PZA | 4 | 769.4 | =L7*M7 | COTIZADO |
-| !! | PB - COWORKING |  |  |  |  |  |  |  |  |  |  |  | =SUM(N16:N19) |  |
-|  | PLANTA BAJA | COWORKING | SILLA COWORKING CON REPOSABRAZOS 0.55x0.50mts. | Base madera entintada negro mate, asiento vinipiel negro. | NOGAL BEAT | BEAT MONACO | #VALUE! |  | https://nogalbeat.com/products/silla-comercial-para-bistro-nogal-beat-monaco-con-brazos-natural | PZA | 5 | =4419*1.16 | =L16*M16 |  |
-|  | PLANTA BAJA | COWORKING | MESA CUADRADA COWORKING 0.70x0.70x0.75mts. | Base metal negro mate + cubierta piedra volcánica. | Superficie Solida Certificada SA de CV, | FENOLICA | #VALUE! |  | https://mobiliariopararestaurantes.com.mx/mesas-con-base-pedestal-central-acero-de-fundicion/724mesa-fenolica-70x70-cm.html | PZA | 5 | 1500 | =L17*M17 |  |
-|  | PLANTA BAJA | COWORKING | LAMPARA DECORATIVA NUDE a muro, 15W. | Aluminio mate negro, arbotante blanca opaca. | ESTEVEZ | NUDE | #VALUE! |  | https://luzdeco.com/products/1741101584 | PZA | 3 | =2456.25*1.16 | =L18*M18 |  |
-|  | PLANTA BAJA | COWORKING | BANCA CUSTOM 4 módulos 1.15m x 0.62m. | Tela suave naranja con cierres. |  |  | #VALUE! |  |  | PZA | 1 | 14000 | =L19*M19 |  |
-| !! | PB - A.S. |  |  |  |  |  |  |  |  |  |  |  | =SUM(N21) |  |
-|  | PLANTA BAJA | A.S | MUEBLE 7 módulos paquetería, estantería aluminio 0.60x0.60x2.15mts. | Aluminio natural. | ODIMER | FORMA DE U | #VALUE! |  | https://www.odimer.com/es/producto/estante-de-aluminio-en-forma-de-u/ | PZA | 1 | =1740*22*1.36*1.16 | =L21*M21 |  |
-| !! | NIVEL 22 - GIMNASIO |  |  |  |  |  |  |  |  |  |  |  | =SUM(N23:N28) |  |
-|  | NIVEL 22 | GIMNASIO | CAMINADORA MTM 1223-01US-LED 110V ENDURANCE, motor 4HP AC. |  | Endurance Treadmill 110V Black matte | MTM1223-01US-604 | #VALUE! |  | https://www.sirateam.mx/ | PZA | 3 | =5938.06*17.5 | =L23*M23 | COTIZADO |
-|  | NIVEL 22 | GIMNASIO | ELÍPTICA MEP 135-01 US-LED ENDURANCE SUSPENSION. |  | Endurance Suspension Elliptical Black | MEP1354-01US-LED | #VALUE! |  | https://www.sirateam.mx/ | PZA | 2 | =3656.98*17.5 | =L24*M24 | COTIZADO |
-|  | NIVEL 22 | GIMNASIO | BICICLETA ESTÁTICA MRB0468-00GLB-LED ENDURANCE RECUMBENT. |  | Matrix Indoor Cycle CXM | MFC0088-00US | #VALUE! |  | https://www.sirateam.mx/ | PZA | 2 | =1977.6*17.5 | =L25*M25 | COTIZADO |
-|  | NIVEL 22 | GIMNASIO | MULTIFUNCIONAL MGM0369-17 MATRIZ G1 3-STACK. |  | Matrix G1 3-stack Multi-gym - Frame: Black | MGM0369-17 | #VALUE! |  | https://www.sirateam.mx/ | PZA | 1 | =6688*17.5 | =L26*M26 | COTIZADO |
-|  | NIVEL 22 | GIMNASIO | BANCO MFW0439-70400 MG MULTI AJUSTABLE 152x78x46cm. |  | MG Multi-Adjustable Bench - Frame: Black | MFW0439-70400 | #VALUE! |  | https://www.sirateam.mx/ | PZA | 1 | =1002.22*17.5 | =L27*M27 | COTIZADO |
-|  | NIVEL 22 | GIMNASIO | RACK MANCUERNAS MG-A544 MAGNUM STUDIO 5 a 50LB. |  | Magnum 2-tier Flat-tray Dumbbell Rack / 5 to 50lb HEXAGONAL RUBBER DUMBBELLS set | MFW0517-39 / HD-005-050R | #VALUE! | #VALUE! | https://www.sirateam.mx/ | PZA | 1 | =(912.8+1288)*17.5 | =L28*M28 | COTIZADO |
-| !! | NIVEL 23 - ROOF TOP |  |  |  |  |  |  |  |  |  |  |  | =SUM(N30:N42) |  |
-|  | NIVEL 23 | ROOFTOP | CAMASTRO INDIVIDUAL 2m x 0.74m x 0.30m. | Estructura metálica antracita, cojín 3" tela Sunbrella gris. | NOGAL BEAT | OFFIHO TAHITI OHV-7030 | #VALUE! |  | https://nogalbeat.com/products/camastro-para-hotel-y-playa-resistente-a-rayos-uv-offiho-tahiti-ohv-7030 | PZA | 3 | =2935*1.16 | =L30*M30 |  |
-|  | NIVEL 23 | ROOFTOP | MESAS LATERALES REDONDAS 50cm base / 40cm sup / 50cm alto. | Mesa concreto claro redondo. | Preferspace | XBZHAB-697759 | #VALUE! | #VALUE! | https://www.amazon.com.mx/Preferspace-Resistente-Auxiliar-Espacios-Dormitorio/dp/B0D6TQKN2W | PZA | 2 | 3000 | =L31*M31 |  |
-|  | NIVEL 23 | ROOFTOP | SOFA 2 PLAZAS 170x75cm con reposabrazos. | Estructura metálica antracita, cojín 3" tela Sunbrella gris. | ENTRE LINEAS | Tequila love | #VALUE! |  | https://entrelineasmuebles.com/product/tequila-love-seat-metal-negro-cuerda-negra-tela-loneta/ | PZA | 4 | =16000*1.16 | =L32*M32 |  |
-|  | NIVEL 23 | ROOFTOP | MESA REDONDA METÁLICA 50cm diámetro / 54cm alto. | Metal antracita mate. | SPACIO | BLUMA-NEGRO | #VALUE! |  | https://spaacio.mx/collections/mesas-auxiliares/products/mesa-auxiliar-de-madera-bluma | PZA | 4 | 12000 | =L33*M33 |  |
-|  | NIVEL 23 | ROOFTOP | FIREPIT ETANOL sobre mesa monolítica concreto 1.40x1.40x0.50mts. | Concreto aparente claro. | ROKAM | Firepit Cuadrado | #VALUE! |  | https://rokam.com.mx/product/firepit-cuadrado/?attribute_tamano=140+x+140+x+40 | PZA | 1 | 38500 | =L34*M34 |  |
-|  | NIVEL 23 | ROOFTOP | BIG GREEN EGG 2XL uso carbón. |  | BIG GREEN EGG | 2XLarge Big Green EGG (2XL) | #VALUE! |  | https://www.biggreenegg.com.mx/product/2xlarge-big-green-egg-2xl/ | PZA | 1 | =72197*1.16 | =L35*M35 |  |
-|  | NIVEL 23 | ROOFTOP | ASADOR CARBÓN 97x60cm empotrable 36". | Acero inoxidable natural. | JAMES & STEVEN | Asador de carbón empotrable 36" COYOTE C3CH36 | #VALUE! |  | https://jamesandsteven.com/products/parrilla-de-carbon-empotrada-de-acero-inoxidable-90-17-cm-35-50-coyote-c3ch36 | PZA | 1 | 93714 | =L36*M36 |  |
-|  | NIVEL 23 | ROOFTOP | TARJA CON ESCURRIDOR 0.50x0.80mts con monomando. | Acero inoxidable natural. | BEDON | B-106TS75453S | #VALUE! |  | https://bedon.mx/producto/paquete-fregadero-de-empotrar-acero-inoxidable-cromo-80-x-45-x-23-cm-con-monomando-con-funcion-cascada/ | PZA | 1 | =2860*1.16 | =L37*M37 |  |
-|  | NIVEL 23 | ROOFTOP | SILLA TEJIDA EXTERIOR 46x56cm / 77cm alto. | Aluminio acabado madera clara + tejido poliéster beige. | CASA EASTER | MONA 6060 | #VALUE! |  | https://casaeaster.com/products/copia-de-silla-de-lazo-para-exterior-e-interior-color-beige-mona-6060 | PZA | 8 | 4490 | =L38*M38 |  |
-|  | NIVEL 23 | ROOFTOP | MESA COMEDOR EXTERIOR 2.00 a 2.50m largo x 1m ancho. | Estructura metálica antracita + cubierta vidrio gris oscuro. | LEROY MERLIN | NATERIAL Odyssea II | #VALUE! |  | https://www.leroymerlin.es/productos/mesa-de-jardin-extensible-alu-naterial-odyssea-ii-antracita-180-240x75x100cm-83813042.html | PZA | 1 | =400*22*1.36*1.16 | =L39*M39 |  |
-|  | NIVEL 23 | ROOFTOP | SOFA INDIVIDUAL 77x75cm. | Estructura metálica antracita, cojín 3" tela Sunbrella gris. | MUEBLERIAS MODERNA | Hestia - Negro A1153 | #VALUE! |  | https://muebleriasmoderna.com.mx/camastros-y-salas/18-sillon-individual-hestia-negro.html | PZA | 4 | 29230 | =L40*M40 |  |
-|  | NIVEL 23 | ROOFTOP | MESAS DE CENTRO REDONDAS 80cm diámetro / 34cm alto. | Estructura metálica color mocha. | MOBICA | Turin Greysh chica | #VALUE! |  | https://www.mobica.com.mx/mesa-de-centro-para-exterior-turin-greysh-chica.html | PZA | 2 | =6990*1.16 | =L41*M41 |  |
-|  | NIVEL 23 | ROOFTOP | SILLA ALTA TIPO BAR 90cm alto. | Aluminio acabado madera clara + tejido poliéster beige. | CASA EASTER | LILIAN -5560 | #VALUE! |  | https://casaeaster.com/products/silla-alta-de-lazo-para-exterior-e-interior-color-blanco-lilian-5560 | PZA | 4 | 6780 | =L42*M42 |  |
+|  |  |  | MOBILIARIO |  |  |  |  |  |  |  |  |  | =N4+N14+N19+N21+N28 |  |
+| !! | PB - LOBBY - RECEPCION |  |  |  |  |  |  |  |  |  |  |  | =SUM(N5:N13) |  |
+|  | PLANTA BAJA | LOBBY ABIERTO | SILLA CON REPOSABRAZOS 0.61 x 0.55mts. | SILLON 4 patas madera haya acabado natural o nogal. | MOBICA | MARIOLA FULL | #VALUE! |  |  | PZA | 5 | 9508.8 | =L5*M5 | COTIZADO |
+|  | PLANTA BAJA | LOBBY ABIERTO | MESA CUADRADA 0.70 x 0.70mts. | Base aluminio 4 puntas, cubierta acero pintado. | MOBICA | MESA CUADRADA ARK R-H74 | #VALUE! |  |  | PZA | 5 | 10305.75 | =L6*M6 | COTIZADO |
+|  | PLANTA BAJA | LOBBY ABIERTO | RIÑONERA 35x60. | Algodón chevron/blanco. | MOBICA | RIÑONERA ARCILLA RITMO | #VALUE! |  |  | PZA | 4 | 769.4 | =L7*M7 | COTIZADO |
+|  | PLANTA BAJA | LOBBY ABIERTO | MESA REDONDA D50. | Placa de acero y pedestal tubular, pintura electrostática. | MOBICA | MESA CHAP H-45 | #VALUE! |  |  | PZA | 1 | 2438.1 | =L8*M8 | COTIZADO |
+|  | PLANTA BAJA | LOBBY ABIERTO | MESA REDONDA D40. | Placa de acero y pedestal tubular, pintura electrostática. | MOBICA | MESA CHAP H-40 | #VALUE! |  |  | PZA | 1 | 2211.3 | =L9*M9 | COTIZADO |
+|  | PLANTA BAJA | LOBBY ABIERTO | MESA CENTRO CONO D70. | Acabado roble y travertino. | MOBICA | MESA DE CENTRO CONO ROBLE TRAVERTIN | #VALUE! |  |  | PZA | 2 | 9045.26 | =L10*M10 | COTIZADO |
+|  | PLANTA BAJA | LOBBY-RECEPCION | SOFA MODULAR 1.05 x 1.05m. | Diseño modular múltiples colores. | MOBICA | SOFA MODULAR ELEMENT PORTOFINO GRIS | #VALUE! |  |  | PZA | 2 | 14217.67 | =L11*M11 | COTIZADO |
+|  | PLANTA BAJA | LOBBY-RECEPCION | SILLON 0.70 x 0.76m. | Estructura de acero cromado, vinipiel. | MOBICA | SILLON WASI | #VALUE! |  |  | PZA | 2 | 7580 | =L12*M12 | COTIZADO |
+|  | PLANTA BAJA | LOBBY-RECEPCION | BUTACA 0.73 x 0.88m. | Piel, estructura madera oscura. | MOBICA | BUTACA NORDICA | #VALUE! |  |  | PZA | 2 | 12772.59 | =L13*M13 | COTIZADO |
+| !! | PB - COWORKING |  |  |  |  |  |  |  |  |  |  |  | =SUM(N15:N18) |  |
+|  | PLANTA BAJA | COWORKING | SILLA COWORKING CON REPOSABRAZOS 0.55x0.50mts. | Base madera entintada negro mate, vinipiel negro. | NOGAL BEAT | BEAT MONACO | #VALUE! |  | https://nogalbeat.com/products/silla-comercial-para-bistro-nogal-beat-monaco-con-brazos-natural | PZA | 5 | =4419*1.16 | =L15*M15 |  |
+|  | PLANTA BAJA | COWORKING | MESA CUADRADA COWORKING 0.70x0.70x0.75mts. | Base metal negro mate + cubierta piedra volcánica. | Superficie Solida Certificada SA de CV, | FENOLICA | #VALUE! |  | https://mobiliariopararestaurantes.com.mx/mesas-con-base-pedestal-central-acero-de-fundicion/724mesa-fenolica-70x70-cm.html | PZA | 5 | 1500 | =L16*M16 |  |
+|  | PLANTA BAJA | COWORKING | LAMPARA DECORATIVA NUDE a muro, 15W. | Aluminio mate negro, arbotante blanca opaca. | ESTEVEZ | NUDE | #VALUE! |  | https://luzdeco.com/products/1741101584 | PZA | 3 | =2456.25*1.16 | =L17*M17 |  |
+|  | PLANTA BAJA | COWORKING | BANCA CUSTOM 4 módulos 1.15m x 0.62m. | Tela naranja con cierres. |  |  | #VALUE! |  |  | PZA | 1 | 14000 | =L18*M18 |  |
+| !! | PB - A.S. |  |  |  |  |  |  |  |  |  |  |  | =SUM(N20) |  |
+|  | PLANTA BAJA | A.S | MUEBLE 7 módulos paquetería, estantería aluminio 0.60x0.60x2.15mts. | Aluminio natural. | ODIMER | FORMA DE U | #VALUE! |  | https://www.odimer.com/es/producto/estante-de-aluminio-en-forma-de-u/ | PZA | 1 | =1740*22*1.36*1.16 | =L20*M20 |  |
+| !! | NIVEL 22 - GIMNASIO |  |  |  |  |  |  |  |  |  |  |  | =SUM(N22:N27) |  |
+|  | NIVEL 22 | GIMNASIO | CAMINADORA MTM 1223-01US-LED 110V ENDURANCE, motor 4HP AC. |  | Endurance Treadmill 110V Black matte | MTM1223-01US-604 | #VALUE! |  | https://www.sirateam.mx/ | PZA | 3 | =5938.06*17.5 | =L22*M22 | COTIZADO |
+|  | NIVEL 22 | GIMNASIO | ELÍPTICA MEP 135-01 US-LED ENDURANCE. |  | Endurance Suspension Elliptical Black | MEP1354-01US-LED | #VALUE! |  | https://www.sirateam.mx/ | PZA | 2 | =3656.98*17.5 | =L23*M23 | COTIZADO |
+|  | NIVEL 22 | GIMNASIO | BICICLETA ESTÁTICA MRB0468-00GLB-LED ENDURANCE. |  | Matrix Indoor Cycle CXM | MFC0088-00US | #VALUE! |  | https://www.sirateam.mx/ | PZA | 2 | =1977.6*17.5 | =L24*M24 | COTIZADO |
+|  | NIVEL 22 | GIMNASIO | MULTIFUNCIONAL MGM0369-17 MATRIZ G1 3-STACK. |  | Matrix G1 3-stack Multi-gym - Frame: Black | MGM0369-17 | #VALUE! |  | https://www.sirateam.mx/ | PZA | 1 | =6688*17.5 | =L25*M25 | COTIZADO |
+|  | NIVEL 22 | GIMNASIO | BANCO MFW0439-70400 MG MULTI AJUSTABLE 152x78x46cm. |  | MG Multi-Adjustable Bench - Frame: Black | MFW0439-70400 | #VALUE! |  | https://www.sirateam.mx/ | PZA | 1 | =1002.22*17.5 | =L26*M26 | COTIZADO |
+|  | NIVEL 22 | GIMNASIO | RACK MANCUERNAS MG-A544 MAGNUM STUDIO 5 a 50LB. |  | Magnum 2-tier Flat-tray Dumbbell Rack / 5 to 50lb HEXAGONAL RUBBER DUMBBELLS set | MFW0517-39 / HD-005-050R | #VALUE! | #VALUE! | https://www.sirateam.mx/ | PZA | 1 | =(912.8+1288)*17.5 | =L27*M27 | COTIZADO |
+| !! | NIVEL 23 - ROOF GARDEN |  |  |  |  |  |  |  |  |  |  |  | =SUM(N29:N36) |  |
+|  | NIVEL 23 | ROOF GARDEN | CAMASTRO INDIVIDUAL 1.88 x 0.73 x 0.33m. | Pata polipropileno reforzado, estructura aluminio con tejido PHIFERTEX. Reclinable 5 posiciones. | MOBICA | CAMASTRO LAGO |  |  |  | PZA | 3 | 11544.23 | =L29*M29 | COTIZADO |
+|  | NIVEL 23 | ROOF GARDEN | MESA 40cm diámetro. | Fibra de vidrio y PP, protección UV. | MOBICA | MESA RAFFINO 40 | #VALUE! |  |  | PZA | 6 | 1140.3 | =L30*M30 | COTIZADO |
+|  | NIVEL 23 | ROOF GARDEN | MESA RECTANGULAR 0.90 x 1.80m y 0.75m alto. | Tablero HPL, estructura aluminio lacado y patas acero lacado epoxi negro. | MOBICA | MESA HUB | #VALUE! |  |  | PZA | 1 | 26074.65 | =L31*M31 | COTIZADO |
+|  | NIVEL 23 | ROOF GARDEN | SILLA CON REPOSABRAZOS 0.60 x 0.60 x 0.866m. | Polipropileno con fibra de vidrio, protección UV. | MOBICA | SILLA BINI | #VALUE! |  |  | PZA | 10 | 5356.05 | =L32*M32 | COTIZADO |
+|  | NIVEL 23 | ROOF GARDEN | MESA CUADRADA 0.70 x 0.70m y 0.74m alto. | Aluminio anodizado pintado al horno 40x40mm 1.50mm grosor. | MOBICA | MESA BARCINO | #VALUE! |  |  | PZA | 2 | 10040.1 | =L33*M33 | COTIZADO |
+|  | NIVEL 23 | ROOF GARDEN | BANCO 0.515 x 0.523 x 0.768m. | Polipropileno con fibra de vidrio, protección UV. | MOBICA | BANCO BINI | #VALUE! |  |  | PZA | 4 | 5531.4 | =L34*M34 | COTIZADO |
+|  | NIVEL 23 | ROOF GARDEN | SILLON 2 PLAZAS 1.235 x 0.655 x 0.38m. | Tecno polímero coinyectado con base acero. Juego de cojines. | MOBICA | SILLON MINUSH | #VALUE! |  |  | PZA | 4 | 15912.75 | =L35*M35 | COTIZADO |
+|  | NIVEL 23 | ROOF GARDEN | SOFA MODULAR 0.795 x 0.816 x 2.35m. | MDPE, respaldo polipropileno reciclado con fibra vidrio, protección UV. 2 terminales + 1 comodín. | MOBICA | SOFA MODULAR BRISA | #VALUE! |  |  | PZA | 4 | 80400.6 | =L36*M36 | COTIZADO |
 `
 };
 
@@ -922,7 +878,6 @@ function parseSheet(raw){
     if(s.endsWith('|')) s=s.slice(0,-1);
     const cells=s.split('|').map(c=>c.trim());
 
-    // Detectar marcador "!!" en el primer cell
     let sec=false, subheader=false;
     if(cells[0] === '!!'){
       sec = true;
@@ -952,7 +907,7 @@ function parseSheet(raw){
 ORDER.forEach(k=>{DATA[k]=parseSheet(SHEETS[k]);});
 
 /* =========================================================
-   POST-PROCESO: reordenar columnas y fusionar filas
+   MERGE UBICACION en CANCELERIAS
    ========================================================= */
 function mergeUbicacionRows(sheetData){
   const uIdx    = sheetData.header.findIndex(h => /ubicaci[oó]n/i.test(String(h||'')));
@@ -978,7 +933,6 @@ function mergeUbicacionRows(sheetData){
           const cv = String(c||'').trim();
           const pv = String(prev.cells[j]||'').trim();
           if(cv === '') return;
-          // Overwrite si prev vacío, o prev no numérico y c sí numérico
           if(pv === '' || (!/^-?[\d.,]+$/.test(pv) && /^-?[\d.,]+$/.test(cv))){
             prev.cells[j] = c;
           }
@@ -991,36 +945,25 @@ function mergeUbicacionRows(sheetData){
   sheetData.rows = out;
 }
 
+/* Reordena CLAVE al inicio */
 function reorderKeyFirst(sheetData){
   const idx = sheetData.header.findIndex(h =>
     /^(clave|id|c[oó]digo|no\.?)$/i.test(String(h).trim())
   );
   if(idx <= 0) return;
-
-  const move = (arr) => {
-    const [v] = arr.splice(idx,1);
-    arr.unshift(v);
-  };
+  const move = (arr) => { const [v] = arr.splice(idx,1); arr.unshift(v); };
   move(sheetData.header);
   sheetData.rows.forEach(r => move(r.cells));
 }
 
-/* =========================================================
-   LINKS DE PRODUCTO — se aplican SOLO donde la celda está vacía
-   Amplía este diccionario con más claves cuando quieras.
-   ========================================================= */
+/* LINKS EXTRAS — se aplican donde esté vacío */
 const LINKS_EXTRAS = {
-  // ── INST HIDROSANITARIA ──
   'C-MED-IH-13': 'https://www.casamyers.com.mx/medidor-de-flujo-de-agua-fria-en-metros-cubicos-de-1-2-13mm',
   'C-Q-03':      'https://www.kuroda.com/tanque-vertical-10-000-l-smart-negro-rotoplas.html',
-
-  // ── MUEBLES DE BAÑO ──
   'PF-04': 'https://www.coflex.com.mx/productos/archivos/ft_P-B9056.pdf',
   'PF-05': 'https://esatto.com.mx/product/lavabo-ceramico-empotrar-oc-078/',
   'PF-06': 'https://www.gilsa.com/media/akeneo_connector/asset_files/s/p/spg_100_ficha_tecnica_5666.pdf',
   'PF-16': 'https://esatto.com.mx/product/lavabo-ceramico-sobreponer-oc-030/',
-
-  // ── ACCESORIOS Y EQUIPOS DE COCINAS ──
   'EP-01': 'https://www.teka.com/es-mx/producto/hlf-82-g1-g-bm_111100001/',
   'EP-02': 'https://www.teka.com/es-mx/producto/placa-vitroceramica-de-4-zonas-de-60-cm_112550009/',
   'EP-03': 'https://www.teka.com/es-mx/producto/square-50-40-tg-b_115230020/',
@@ -1028,56 +971,42 @@ const LINKS_EXTRAS = {
   'EP-09': 'https://www.teka.com/es-mx/producto/mwg-11x_40590830/',
   'PF-66': 'https://helvex.com/mx/e-310-eb.html',
   'PF-33': 'https://urrea.mx/cocina/llaves-para-cocina/monomando-para-cocina-semi-profesional-9499-2',
-
-  // ── CONTACTOS/APAGADORES ──
   'EF-03':       'https://www.simonelectric.com/es-mx/2601425-068-placa-c-interruptor-circuito-por-falla-tierra-gfci-autotest-c-placa-15a-125v-grafito-s26',
   '25424-60':    'https://www.simonelectric.com/es-mx/25424-60-toma-corriente-duplex-2p-t-seguridad-placa-15a-127v-blanco-simon-25-plus',
   '2602425-068': 'https://www.simonelectric.com/es-mx/2601425-068-placa-c-interruptor-circuito-por-falla-tierra-gfci-autotest-c-placa-15a-125v-grafito-s26',
   '2600611-038': 'https://www.simonelectric.com/es-mx/2600611-038-placa-1-modulo-grafito-chasis-grafito-simon-26',
   '2600201-038': 'https://www.simonelectric.com/es-mx/2600201-038-interruptor-sencillo-3-vias-10a-127v-grafito-simon-26',
   '2600613-038': 'https://www.simonelectric.com/es-mx/2600613-038-placa-3-modulos-grafito-chasis-gafito-simon-26',
-
-  // Aquí puedes seguir añadiendo más:  'C-BOM-05': 'https://...',  'PW-01': 'https://...'
 };
 
 function fillEmptyLinks(sheetData){
   const linkCols = sheetData.header
     .map((h,i)=>({i,h}))
     .filter(({h}) => /^link|referencia/i.test(String(h||'').trim()));
-
   if(!linkCols.length) return;
-
   const claveIdx = sheetData.header.findIndex(h =>
     /^(clave|id|c[oó]digo|no\.?)$/i.test(String(h||'').trim())
   );
   if(claveIdx < 0) return;
-
   sheetData.rows.forEach(r=>{
     if(r.sec) return;
     const clave = String(r.cells[claveIdx]||'').trim();
     const extra = LINKS_EXTRAS[clave];
     if(!extra) return;
-
     linkCols.forEach(({i})=>{
       const v = String(r.cells[i]||'').trim();
-      if(v === '' || /^#(VALUE|REF|N\/A)/i.test(v)){
-        r.cells[i] = extra;
-      }
+      if(v === '' || /^#(VALUE|REF|N\/A)/i.test(v)) r.cells[i] = extra;
     });
   });
 }
 
-/* Aplicar en orden:
-   1) Merge UBICACION en CANCELERIAS (usa índices originales)
-   2) Reordenar CLAVE al inicio (todos)
-   3) Rellenar links vacíos (todos)
-*/
+/* Aplica transformaciones */
 mergeUbicacionRows(DATA['CANCELERIAS']);
 ORDER.forEach(k => reorderKeyFirst(DATA[k]));
 ORDER.forEach(k => fillEmptyLinks(DATA[k]));
 
 /* =========================================================
-   MAPEO DEL ÍNDICE → HOJA DESTINO
+   MAPEO ÍNDICE → HOJA
    ========================================================= */
 const INDICE_ALIAS = {
   'i hidrosanitaria':'INST HIDROSANITARIA',
@@ -1089,12 +1018,10 @@ const INDICE_ALIAS = {
   'i. electrica':'INST. ELECTRICA',
   'i electrica':'INST. ELECTRICA',
   'inst electrica':'INST. ELECTRICA',
-  'inst. electrica':'INST. ELECTRICA',
   'acabados (pisos / muros / plafones)':'ACABADOS',
   'acabados (pisos|muros|plafones)':'ACABADOS',
   'acabados':'ACABADOS',
   'contactos/apagadores':'CONTACTOS.APAGADORES',
-  'contactos. apagadores':'CONTACTOS.APAGADORES',
   'sistema tiras led':'TIRAS LED DESGLOSE',
   'tiras led desglose':'TIRAS LED DESGLOSE',
   'sistema de rieles':'SISTEMA DE RIELES',
@@ -1120,7 +1047,7 @@ function findSheetForLabel(label){
 }
 
 /* =========================================================
-   CLASIFICACIÓN DE COLUMNAS Y DINERO
+   CLASIFICACIÓN Y FORMATO MONEDA
    ========================================================= */
 function classifyHeader(h){
   const t=String(h||'').toLowerCase().trim();
@@ -1150,22 +1077,29 @@ function fmtMXN(n){
 function cellHTML(raw, headerText){
   const t=String(raw).trim();
   const cls=classifyHeader(headerText);
-
   if(!t) return `<td${cls?` class="${cls} empty"`:' class="empty"'}>—</td>`;
-
-  // Links: no formatear como dinero
   if(cls !== 'col-link' && isMoneyHeader(headerText) && /^-?[\d]+(\.\d+)?$/.test(t)){
     const n=parseFloat(t);
     const totalCls = isTotalHeader(headerText) ? ' is-total' : '';
     return `<td class="money${totalCls}">${fmtMXN(n)}<span class="cur">MXN</span></td>`;
   }
-
   const h=inline(t);
   const extra=[];
   if(/#(VALUE|REF|N\/A|DIV\/0)/i.test(t)) extra.push('err');
   else if(/^-?[\d,]+(\.\d+)?$/.test(t)) extra.push('num');
   const allClasses=[cls,...extra].filter(Boolean).join(' ');
   return `<td${allClasses?` class="${allClasses}"`:''}>${h}</td>`;
+}
+
+/* =========================================================
+   DETECCIÓN DE IMAGEN POR URL
+   ========================================================= */
+function findImageUrl(cells){
+  for(const cell of cells){
+    const v = String(cell||'').trim();
+    if(/^https?:\/\/[^\s]+\.(jpg|jpeg|png|webp|gif)(\?[^\s]*)?$/i.test(v)) return v;
+  }
+  return null;
 }
 
 /* =========================================================
@@ -1210,7 +1144,6 @@ function renderSheet(key){
   const isIndice = key === 'INDICE';
   const catColIdx = isIndice ? d.header.findIndex(h => /categor/i.test(h)) : -1;
 
-  // Filtrar ÍNDICE: solo categorías principales
   let rowsToRender = d.rows;
   if(isIndice){
     rowsToRender = d.rows.filter(r => {
@@ -1243,17 +1176,13 @@ function renderSheet(key){
   html+=`</tr></thead><tbody>`;
 
   rowsToRender.forEach(r=>{
-    // --- Filas especiales (divisores / sub-headers) ---
     if(r.sec){
       if(r.subheader){
         html += `<tr class="subheader-row">`;
         for(let i=0;i<nCols;i++){
           const v = r.cells[i] || '';
-          if(v){
-            html += `<td class="subheader-cell">${inline(v)}</td>`;
-          } else {
-            html += `<td class="subheader-cell empty-cell">—</td>`;
-          }
+          if(v) html += `<td class="subheader-cell">${inline(v)}</td>`;
+          else html += `<td class="subheader-cell empty-cell">—</td>`;
         }
         html += `</tr>`;
       } else {
@@ -1264,16 +1193,16 @@ function renderSheet(key){
       return;
     }
 
-    // --- Fila normal ---
     const code = codeIdx>=0 ? (r.cells[codeIdx]||'').trim() : '';
-    const img  = IMAGENES[code];
+    const imgMap = IMAGENES[code];
+    const imgDynamic = imgMap ? null : findImageUrl(r.cells);
+    const imgUrl = imgMap || imgDynamic;
     const trClass = isIndice ? ' class="indice-row"' : '';
 
     html += `<tr${trClass}>`;
     r.cells.forEach((c,i)=>{
       const headerTxt=(d.header[i]||'').toUpperCase();
 
-      // Índice: columna CATEGORÍA → enlace
       if(isIndice && i === catColIdx && String(c).trim() !== ''){
         const target = findSheetForLabel(c);
         if(target){
@@ -1284,19 +1213,15 @@ function renderSheet(key){
         return;
       }
 
-      // Imagen
       if(headerTxt.includes('IMAGEN')){
-        if(img){
-          html += `<td class="imgcell"><img src="${img}" alt="${esc(code)}" loading="lazy" onclick="abrirLightbox('${img}')"></td>`;
-        } else if(/^https?:\/\//i.test(c.trim())){
-          html += `<td class="imgcell"><img src="${esc(c.trim())}" alt="${esc(code)}" loading="lazy" onclick="abrirLightbox('${esc(c.trim())}')"></td>`;
+        if(imgUrl){
+          html += `<td class="imgcell"><img src="${esc(imgUrl)}" alt="${esc(code)}" loading="lazy" onclick="abrirLightbox('${esc(imgUrl)}')" onerror="this.parentElement.classList.add('empty-img');this.parentElement.innerHTML='Sin imagen';"></td>`;
         } else {
           html += `<td class="imgcell empty-img">Sin imagen</td>`;
         }
         return;
       }
 
-      // Celda normal
       html += cellHTML(c, d.header[i]);
     });
     html += `</tr>`;
